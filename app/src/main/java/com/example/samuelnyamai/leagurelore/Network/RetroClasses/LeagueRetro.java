@@ -1,6 +1,6 @@
 package com.example.samuelnyamai.leagurelore.Network.RetroClasses;
 
-import com.example.samuelnyamai.leagurelore.ServerConstants;
+import com.example.samuelnyamai.leagurelore.Constants.ServerConstants;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="button_radius">4dp</dimen>
+    <dimen name="margin_left">8dp</dimen>
+    <dimen name="margin_drawer_lineartop">8dp</dimen>
+    <dimen name="first_child_width">80dp</dimen>
+
 </resources>

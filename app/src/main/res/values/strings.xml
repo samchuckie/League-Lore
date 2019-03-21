@@ -2,6 +2,14 @@
     <string name="app_name">Leagure Lore</string>
     <string name="summoner_name_hint">Enter Summoner name</string>
     <string name="proceed">Proceed</string>
+    <string name="preference_file_key" />
+    <string name="summoner_name_key">summoner_key</string>
+    <string name="log_out">Log out</string>
+    <string name="username">Username:</string>
+    <string name="level">Level:</string>
+    <string name="icon_content_description">League icon.Click to display information</string>
+    <string name="summoner_icon_key">icon_key</string>
+    <string name="summoner_level_key">levelkey</string>
     <string-array name="server">
         <item>EUW</item>
         <item>NA</item>

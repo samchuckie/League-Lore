@@ -15,7 +15,7 @@ public class SummonerModel {
     public static MutableLiveData<Summoner> getLogininstance(String server, String username){
         MutableLiveData<Summoner> summonerMutableLiveData = new MutableLiveData<>();
         LoginInterface loginInterface = LeagueRetro.getLeagueInstance(server).create(LoginInterface.class);
-        Call<Summoner> summonerCall= loginInterface.getPersonData(username, "RGAPI-d37b4435-b8b7-42cb-8f0a-734f6c06d261");
+        Call<Summoner> summonerCall= loginInterface.getPersonData(username, "RGAPI-dd6ca9d8-a87e-40c3-84eb-454fa5521162");
         summonerCall.enqueue(new Callback<Summoner>() {
             @Override
             public void onResponse(Call<Summoner> call, Response<Summoner> response) {

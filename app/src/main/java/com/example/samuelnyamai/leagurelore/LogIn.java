@@ -2,6 +2,9 @@ package com.example.samuelnyamai.leagurelore;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,10 +29,18 @@ public class LogIn extends AppCompatActivity {
     // TODO CHECK INTERNET CONNECTIVITY
     // TODO ADD PROGRESS BAR
     // TODO UNCOMMENT REVISIONDATE FOR USE IN UPDATE
-
+    SharedPreferences sharedPreferences ;
+    Context context;
+    String shared_preference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
+        sharedPreferences = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        shared_preference =sharedPreferences.getString(getString(R.string.summoner_name_key) , null);
+        if(shared_preference!=null){
+            startActivity(new Intent(this ,Champions.class));
+        }
         setContentView(R.layout.activity_log_in);
         SummonerViewModel viewModel = ViewModelProviders.of(this).get(SummonerViewModel.class);
         EditText summoner_username = findViewById(R.id.summoner_username);
@@ -43,10 +54,17 @@ public class LogIn extends AppCompatActivity {
 
             // So I discovered that calling the getSelectedItem actually calls the onItemSelected ->parent.getSelectedItem(position).toString();
 
-            Toast.makeText(this , "You clicked on " + serverSpinner.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
             viewModel.getDetails(serverSpinner.getSelectedItem().toString(),summoner_username.getText().toString());
             viewModel.getSummonerLiveData().observe(this ,summoneresponse ->{
-                Log.e("sam","The summoner name is "+ summoneresponse.getName());
+                if (summoneresponse.getName() != null)
+                {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(getString(R.string.summoner_name_key), summoneresponse.getName() );
+                    editor.putInt(getString(R.string.summoner_icon_key ),summoneresponse.getProfileIconId());
+                    editor.putInt(getString(R.string.summoner_level_key),summoneresponse.getSummonerLevel());
+                    editor.apply();
+                    startActivity(new Intent(this ,Champions.class));
+                }
             });
         });
     }
