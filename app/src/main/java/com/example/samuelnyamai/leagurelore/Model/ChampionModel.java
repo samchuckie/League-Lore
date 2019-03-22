@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class ChampionModel {
     private static MutableLiveData<AllChampions> allChampionsMutableLiveData =new MutableLiveData<>();
 
@@ -24,8 +25,10 @@ public class ChampionModel {
                 Log.e("sam" , "Version is " + response.body().getVersion());
                 Log.e("sam","Type is "  + response.body().getType());
                 Log.e("sam","Making a call all time");
-                Log.e("sam","First champion data is " + response.body().getData().get(1).toString());
-               // allChampionsMutableLiveData.setValue(response.body());
+//                String data = response.body().getDatas().getAatrox().getBlurb();
+//
+//                Log.e("sam","Blurb is " + data);
+                allChampionsMutableLiveData.setValue(response.body());
             }
 
             @Override

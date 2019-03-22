@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import android.view.ViewGroup;
 import com.example.samuelnyamai.leagurelore.Adapters.ChampionAdapter;
 import com.example.samuelnyamai.leagurelore.R;
 import com.example.samuelnyamai.leagurelore.ViewModel.AllChampionsViewModel;
-import com.example.samuelnyamai.leagurelore.data.AllChampions;
+
 import java.util.Objects;
 
     // TODO SIDE PROJECT FOR MOVIEDB CHANGE THE WHOLE THING. FOR ACTORS USE DIALOG AS WITH CHAMPIONS HERE
@@ -38,7 +37,6 @@ public class ChampionFragment extends Fragment {
         ChampionAdapter championAdapter = new ChampionAdapter();
         recyclerView.setAdapter(championAdapter);
         allChampionsViewModel.getAllChampionsMutableLiveData().observe(getViewLifecycleOwner(),observer->{
-            Log.e("sam" ,"Observed version is " + observer.getVersion());
             //Log.e("sam","First champ version is " + observer.getAll_champions().get(0).getVersion());
         });
 

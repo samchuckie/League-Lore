@@ -1,10 +1,7 @@
 package com.example.samuelnyamai.leagurelore.data;
 
-import com.example.samuelnyamai.leagurelore.Champions;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class AllChampions {
     @SerializedName("version")
@@ -31,16 +28,25 @@ public class AllChampions {
     public void setType(String type) {
         this.type = type;
     }
+
+
+    //     https://stackoverflow.com/questions/23070298/get-nested-json-object-with-gson-using-retrofit/34375405
+    ///     https://stackoverflow.com/questions/23070298/get-nested-json-object-with-gson-using-retrofit/34375405
+    //  TODO HAVE ON CLASS WITH BASE WITH BASE PROPERTIES OF VERTSION AND STATS
+    // SEARCH "get nested json object with gson using retrofit"
+
+
+    public Datas getDatas() {
+        return datas;
+    }
+
+    public void setData(Datas data) {
+        this.datas = datas;
+    }
+
     @SerializedName("data")
     @Expose
     private
-    List<Specific_champions> data;
+    Datas datas;
 
-    public List<Specific_champions> getData() {
-        return data;
-    }
-
-    public void setData(List<Specific_champions> data) {
-        this.data = data;
-    }
 }
