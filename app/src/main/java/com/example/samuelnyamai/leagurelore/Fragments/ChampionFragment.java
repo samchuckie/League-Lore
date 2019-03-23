@@ -38,7 +38,10 @@ public class ChampionFragment extends Fragment {
         ChampionAdapter championAdapter = new ChampionAdapter();
         recyclerView.setAdapter(championAdapter);
         String[] servers = getResources().getStringArray(R.array.server);
-        Log.e("sam" , "servers are " + servers[1]);
+        for (String x:servers ) {
+        Log.e("sam" , "servers are " + x + "");
+
+        }
         allChampionsViewModel.getAllChampionsMutableLiveData().observe(getViewLifecycleOwner(),observer->{
             //Log.e("sam","First champ version is " + observer.getAll_champions().get(0).getVersion());
         });
