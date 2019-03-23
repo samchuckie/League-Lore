@@ -6,6 +6,10 @@ import android.util.Log;
 import com.example.samuelnyamai.leagurelore.Network.RetroClasses.ChampionRetro;
 import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.ChampionsInterface;
 import com.example.samuelnyamai.leagurelore.data.AllChampions;
+import com.example.samuelnyamai.leagurelore.data.Datas;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,9 +29,25 @@ public class ChampionModel {
                 Log.e("sam" , "Version is " + response.body().getVersion());
                 Log.e("sam","Type is "  + response.body().getType());
                 Log.e("sam","Making a call all time");
-//                String data = response.body().getDatas().getAatrox().getBlurb();
-//
-//                Log.e("sam","Blurb is " + data);
+                String data = response.body().getDatas().getPoppy().getBlurb();
+                Datas datas=response.body().getDatas();
+                for (Method m: datas.getClass().getMethods())
+                {
+                    try {
+                        if (m.getName().startsWith("get") && m.getParameterTypes().length == 0) {
+                            final Object r = m.invoke(datas);
+                            Log.e("sam","Reflected method is " + r.getClass().getSuperclass());
+                        }
+
+
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                Log.e("sam","Blurb is " + data);
                 allChampionsMutableLiveData.setValue(response.body());
             }
 

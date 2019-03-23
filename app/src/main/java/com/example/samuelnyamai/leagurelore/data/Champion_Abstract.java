@@ -232,7 +232,8 @@ public abstract class Champion_Abstract {
     }
     public class Aatrox extends Champion_Abstract {
 
-    }    public class Poppy extends Champion_Abstract {
+    }
+    public class Poppy extends Champion_Abstract {
 
     }
     public class Taliyah extends Champion_Abstract {
@@ -531,4 +532,5 @@ public abstract class Champion_Abstract {
     public class Gragas extends Champion_Abstract {
 
     }
+
 }

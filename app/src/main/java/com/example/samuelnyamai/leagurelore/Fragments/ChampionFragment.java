@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,8 @@ public class ChampionFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         ChampionAdapter championAdapter = new ChampionAdapter();
         recyclerView.setAdapter(championAdapter);
+        String[] servers = getResources().getStringArray(R.array.server);
+        Log.e("sam" , "servers are " + servers[1]);
         allChampionsViewModel.getAllChampionsMutableLiveData().observe(getViewLifecycleOwner(),observer->{
             //Log.e("sam","First champ version is " + observer.getAll_champions().get(0).getVersion());
         });

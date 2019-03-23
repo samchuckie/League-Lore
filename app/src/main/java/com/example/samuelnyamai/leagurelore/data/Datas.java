@@ -4,6 +4,7 @@ import com.example.samuelnyamai.leagurelore.data.Champion_Abstract.*;
 
 public class Datas {
 
+
         private Jax Jax;
 
         private Aatrox Aatrox;
@@ -101,7 +102,6 @@ public class Datas {
         private Riven Riven;
 
         private Chogath Chogath;
-
 
         private Poppy Poppy;
 
@@ -1721,4 +1721,3 @@ public class Datas {
             this.Gragas = Gragas;
         }
 }
-
