@@ -10,14 +10,13 @@ import com.example.samuelnyamai.leagurelore.Model.ChampionModel;
 import com.example.samuelnyamai.leagurelore.data.AllChampions;
 
 public class AllChampionsViewModel extends AndroidViewModel {
-    private MutableLiveData<AllChampions> allChampionsMutableLiveData;
     public AllChampionsViewModel(@NonNull Application application) {
         super(application);
-        allChampionsMutableLiveData= ChampionModel.getAllChampionsMutableLiveData();
         Log.e("sam","Creating a new viewmodel");
     }
 
-    public MutableLiveData<AllChampions> getAllChampionsMutableLiveData() {
-        return allChampionsMutableLiveData;
+    public MutableLiveData<AllChampions> getAllChampionsMutableLiveData(String[] servers) {
+
+        return ChampionModel.getAllChampionsMutableLiveData(servers);
     }
 }

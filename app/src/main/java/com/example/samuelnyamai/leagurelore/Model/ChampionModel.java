@@ -6,55 +6,55 @@ import android.util.Log;
 import com.example.samuelnyamai.leagurelore.Network.RetroClasses.ChampionRetro;
 import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.ChampionsInterface;
 import com.example.samuelnyamai.leagurelore.data.AllChampions;
-import com.example.samuelnyamai.leagurelore.data.Datas;
+import com.example.samuelnyamai.leagurelore.data.Champion_details;
+import com.google.gson.Gson;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class ChampionModel {
+    static Call<ResponseBody> allChampionsCall;
     private static MutableLiveData<AllChampions> allChampionsMutableLiveData =new MutableLiveData<>();
 
-    public static MutableLiveData<AllChampions> getAllChampionsMutableLiveData() {
+    public static MutableLiveData<AllChampions> getAllChampionsMutableLiveData(String[] servers) {
         ChampionsInterface championsInterface = ChampionRetro.getAllChampionInstance().create(ChampionsInterface.class);
-        Call<AllChampions> allChampionsCall = championsInterface.getAllChampions();
-        allChampionsCall.enqueue(new Callback<AllChampions>() {
+        allChampionsCall= championsInterface.getAllChampions("Aatrox");
+
+        allChampionsCall.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<AllChampions> call, Response<AllChampions> response) {
-                Log.e("sam","Call is "+ call.request().url().toString());
-                Log.e("sam" , "Version is " + response.body().getVersion());
-                Log.e("sam","Type is "  + response.body().getType());
-                Log.e("sam","Making a call all time");
-                String data = response.body().getDatas().getPoppy().getBlurb();
-                Datas datas=response.body().getDatas();
-                for (Method m: datas.getClass().getMethods())
-                {
-                    try {
-                        if (m.getName().startsWith("get") && m.getParameterTypes().length == 0) {
-                            final Object r = m.invoke(datas);
-                            Log.e("sam","Reflected method is " + r.getClass().getSuperclass());
-                        }
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    JSONObject data = jsonObject.getJSONObject("data").getJSONObject("Aatrox");
+                    String title = data.getString("title");
+                    Log.e("sam","Title is" + title);
+                    Gson gson= new Gson();
+                    Champion_details championdetails = gson.fromJson(data.toString() , Champion_details.class);
+                    Log.e("sam" , "The title of specific champion is "+ championdetails.getTitle());
+                    Log.e("sam" , "The id of the first skin is "+ championdetails.getChampImagesList().get(0).getId());
+                    Log.e("sam" , "The championImage is " + championdetails.getChampionImage().getFull());
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e("sam","Error is" + e.toString()) ;
 
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
-                Log.e("sam","Blurb is " + data);
-                allChampionsMutableLiveData.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<AllChampions> call, Throwable t) {
-                Log.e("sam" , "Error occured is " + t.getMessage());
-                //allChampionsMutableLiveData.setValue(null);
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("sam","Call is" + call.request().url());
 
             }
         });

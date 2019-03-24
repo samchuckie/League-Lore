@@ -9,4 +9,5 @@ public class ServerConstants {
         public static final String PROFILE_BASE_URL ="https://ddragon.leagueoflegends.com/cdn/9.5.1/img/profileicon/";
         public static final String IMAGE_EXTENSION = ".png";
         public static final String CHAMPIONS_BASE_URL = "http://ddragon.leagueoflegends.com/cdn/9.5.1/data/en_US/";
+        public static final String S_CHAMPION_BASE_URL = "http://ddragon.leagueoflegends.com/cdn/9.5.1/data/en_US/champion/";
 }
