@@ -3,6 +3,8 @@ package com.example.samuelnyamai.leagurelore.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Summoner {
         @SerializedName("id")
         @Expose
@@ -19,14 +21,36 @@ public class Summoner {
         @SerializedName("profileIconId")
         @Expose
         private Integer profileIconId;
+
 //        @SerializedName("revisionDate")
 //        @Expose
 //        private Integer revisionDate;
+
         @SerializedName("summonerLevel")
         @Expose
         private Integer summonerLevel;
 
-        public String getId() {
+        private List<ChampionsPlayed> championsPlayedList;
+
+        private List<SummonerRankedInfo> summonerRankedInfoList;
+
+    public List<ChampionsPlayed> getChampionsPlayedList() {
+        return championsPlayedList;
+    }
+
+    public void setChampionsPlayedList(List<ChampionsPlayed> championsPlayedList) {
+        this.championsPlayedList = championsPlayedList;
+    }
+
+    public List<SummonerRankedInfo> getSummonerRankedInfoList() {
+        return summonerRankedInfoList;
+    }
+
+    public void setSummonerRankedInfoList(List<SummonerRankedInfo> summonerRankedInfoList) {
+        this.summonerRankedInfoList = summonerRankedInfoList;
+    }
+
+    public String getId() {
             return id;
         }
 

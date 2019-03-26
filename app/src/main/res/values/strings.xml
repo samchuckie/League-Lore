@@ -10,6 +10,8 @@
     <string name="icon_content_description">League icon.Click to display information</string>
     <string name="summoner_icon_key">icon_key</string>
     <string name="summoner_level_key">levelkey</string>
+    <string name="champion_view_desciption">A champion view</string>
+    <string name="ranked_solo_emblem">Ranked solo emblem</string>
     <string-array name="server">
         <item>EUW</item>
         <item>NA</item>
@@ -79,7 +81,7 @@
         <item>Sejuani</item>
         <item>Nidalee</item>
         <item>Garen</item>
-        <item> Leona</item>
+        <item>Leona</item>
         <item>Zed</item>
         <item>Blitzcrank</item>
         <item>Rammus</item>
@@ -137,7 +139,7 @@
         <item>Amumu</item>
         <item>Lulu</item>
         <item>Morgana</item>
-        <item> Nocturne Nocturne</item>
+        <item>Nocturne</item>
         <item>Diana</item>
         <item>AurelionSol</item>
         <item>Zyra</item>

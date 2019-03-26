@@ -37,10 +37,8 @@ public class ChampionFragment extends Fragment {
         ChampionAdapter championAdapter = new ChampionAdapter();
         recyclerView.setAdapter(championAdapter);
         String[] servers = getResources().getStringArray(R.array.champions);
-        allChampionsViewModel.getAllChampionsMutableLiveData(servers).observe(getViewLifecycleOwner(),observer->{
-            //Log.e("sam","First champ version is " + observer.getAll_champions().get(0).getVersion());
-        });
-
+        allChampionsViewModel.getListMutableLiveData(servers).observe(getViewLifecycleOwner(), championAdapter::addChampion);
+        // Lambda replaced with methodd expression
         return view;
     }
 }

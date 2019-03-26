@@ -1,21 +1,17 @@
 package com.example.samuelnyamai.leagurelore;
 
 import android.content.SharedPreferences;
-import android.net.Uri;
-import android.os.PersistableBundle;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.util.StringBuilderPrinter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.samuelnyamai.leagurelore.Fragments.ChampionFragment;
 import com.squareup.picasso.Picasso;
 
-import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.IMAGE_EXTENSION;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PNG_IMAGE_EXTENSION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PROFILE_BASE_URL;
 
 public class Champions extends AppCompatActivity {
@@ -40,7 +36,7 @@ public class Champions extends AppCompatActivity {
             int user_icon = sharedPreferences.getInt(getString(R.string.summoner_icon_key), 0);
             username_tv.setText(username_pref);
             level_tv.setText(String.valueOf(user_level));
-            StringBuilder path = new StringBuilder(PROFILE_BASE_URL).append(user_icon).append(IMAGE_EXTENSION);
+            StringBuilder path = new StringBuilder(PROFILE_BASE_URL).append(user_icon).append(PNG_IMAGE_EXTENSION);
             Picasso.get().load(path.toString()).noFade().into(usericon_iv);
         }
         ChampionFragment championFragment = new ChampionFragment();

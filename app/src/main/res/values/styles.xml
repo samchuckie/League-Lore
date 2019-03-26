@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
+    <style name="SummonerTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    </style>
+
+
     <style name="drawer_linear">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_height">wrap_content</item>

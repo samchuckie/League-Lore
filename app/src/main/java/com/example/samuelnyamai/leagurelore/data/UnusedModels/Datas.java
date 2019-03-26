@@ -1,6 +1,6 @@
-package com.example.samuelnyamai.leagurelore.data;
+package com.example.samuelnyamai.leagurelore.data.UnusedModels;
 
-import com.example.samuelnyamai.leagurelore.data.Champion_Abstract.*;
+import com.example.samuelnyamai.leagurelore.data.UnusedModels.Champion_Abstract.*;
 
 public class Datas {
 

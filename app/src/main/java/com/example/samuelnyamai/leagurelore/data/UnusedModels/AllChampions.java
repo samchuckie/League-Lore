@@ -1,4 +1,4 @@
-package com.example.samuelnyamai.leagurelore.data;
+package com.example.samuelnyamai.leagurelore.data.UnusedModels;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

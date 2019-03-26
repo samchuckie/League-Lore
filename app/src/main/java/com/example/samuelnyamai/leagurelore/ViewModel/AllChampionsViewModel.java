@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.samuelnyamai.leagurelore.Model.ChampionModel;
-import com.example.samuelnyamai.leagurelore.data.AllChampions;
+import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
 
 public class AllChampionsViewModel extends AndroidViewModel {
     public AllChampionsViewModel(@NonNull Application application) {
@@ -15,8 +15,9 @@ public class AllChampionsViewModel extends AndroidViewModel {
         Log.e("sam","Creating a new viewmodel");
     }
 
-    public MutableLiveData<AllChampions> getAllChampionsMutableLiveData(String[] servers) {
+    public MutableLiveData<ChampionDetails> getListMutableLiveData(String[] servers) {
 
-        return ChampionModel.getAllChampionsMutableLiveData(servers);
+         ChampionModel.getListMutableLiveData(servers);
+         return ChampionModel.getListMutableLiveData();
     }
 }

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:paddingBottom="16dp"
+    android:background="@android:color/black">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      >
+      <de.hdodenhof.circleimageview.CircleImageView
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginLeft="8dp"
+          android:background="@drawable/alistar"
+          app:civ_border_width="4dp"
+          app:civ_border_color="#FF000000"
+          android:id="@+id/champion_iv"
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_marginLeft="16dp"
+          android:textSize="16dp"
+          tool:text="Name"
+          android:textColor="@android:color/white"
+          android:gravity="center"
+          android:id="@+id/champion_name_tv"
+
+          />
+  </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        tool:background="@drawable/a"
+        android:contentDescription="@string/champion_view_desciption"
+        android:scaleType="centerCrop"
+        android:id="@+id/champion_background_iv"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginLeft="8dp"
+        android:textColor="@android:color/white"
+        android:text="Aatrox"
+        android:id="@+id/champion_title_tv"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tool:text="Aatrox is a legendary warrior, one of only five that remain of"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@android:color/white"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:id="@+id/champion_blurb_tv"
+        />
+
+
+</LinearLayout>

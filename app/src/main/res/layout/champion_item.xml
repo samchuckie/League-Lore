@@ -2,11 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/a"
+        tool:background="@drawable/a"
+        android:contentDescription="@string/champion_view_desciption"
+        android:scaleType="centerCrop"
+        android:id="@+id/champion_background_iv"
         />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -17,6 +21,7 @@
         android:layout_marginTop="60dp"
         app:civ_border_width="8dp"
         app:civ_border_color="#FF000000"
+        android:id="@+id/champion_iv"
         />
     <View
         android:layout_width="match_parent"
@@ -31,9 +36,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
         android:layout_marginTop="150dp"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textColor="@android:color/white"
-        android:text="Aatrox" />
+        android:text="Aatrox"
+        android:id="@+id/champion_name_tv"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +53,7 @@
         android:textColor="@android:color/white"
         android:maxLines="1"
         android:ellipsize="end"
+        android:id="@+id/champion_blurb_tv"
         />
 
 

@@ -15,7 +15,7 @@ public class SummonerModel {
     public static MutableLiveData<Summoner> getLogininstance(String server, String username){
         MutableLiveData<Summoner> summonerMutableLiveData = new MutableLiveData<>();
         LoginInterface loginInterface = LeagueRetro.getLeagueInstance(server).create(LoginInterface.class);
-        Call<Summoner> summonerCall= loginInterface.getPersonData(username, "RGAPI-dd6ca9d8-a87e-40c3-84eb-454fa5521162");
+        Call<Summoner> summonerCall= loginInterface.getPersonData(username, "RGAPI-8507538e-bb9b-4b56-866c-f7145927471b");
         summonerCall.enqueue(new Callback<Summoner>() {
             @Override
             public void onResponse(Call<Summoner> call, Response<Summoner> response) {
@@ -31,3 +31,12 @@ public class SummonerModel {
         return summonerMutableLiveData;
     }
 }
+//{
+//        "profileIconId": 3879,
+//        "name": "charliesdemon",
+//        "puuid": "Qr64KexebqWSG_l8ZjeaeD9sbetcTc0aZz9NaMWd0WvT_PbxpvCLCj-DbQH9nzpZmGdjU5Bd7-b8sA",
+//        "summonerLevel": 166,
+//        "accountId": "cVe5B3V2qt7PUcQhK49GRKTwuwMLOGOqN5SNUX9DR2BngD8",
+//        "id": "3ckvH8FwV3ZFIbGsJGDI5XhUjnFM_A_IjcFAFgz5FvwJEww",
+//        "revisionDate": 1553489876000
+//        }
