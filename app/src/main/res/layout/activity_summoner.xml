@@ -80,7 +80,7 @@
             >
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="250dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 tools:background="@drawable/bronze"
                 android:contentDescription="@string/ranked_solo_emblem" />
@@ -115,7 +115,7 @@
             >
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="250dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 tools:background="@drawable/silver"
                 />
@@ -142,41 +142,43 @@
             </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="200dp"-->
-        <!--android:background="@drawable/a"-->
-        <!--/>-->
 
-    <!--<de.hdodenhof.circleimageview.CircleImageView-->
-        <!--android:layout_width="48dp"-->
-        <!--android:layout_height="48dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginTop="172dp"-->
-        <!--android:background="@drawable/alistar"-->
-        <!--app:civ_border_width="4dp"-->
-        <!--app:civ_border_color="#FF000000"-->
-        <!--/>-->
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="64dp"-->
-        <!--android:layout_marginTop="176dp"-->
-        <!--android:textSize="16dp"-->
-        <!--tools:text="Charliesdemon"-->
-        <!--android:textColor="@android:color/white"-->
-        <!--android:gravity="center"-->
-        <!--/>-->
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="64dp"-->
-        <!--android:layout_marginTop="200dp"-->
-        <!--android:textSize="16dp"-->
-        <!--tools:text="Level 126"-->
-        <!--android:textColor="@android:color/white"-->
-        <!--android:gravity="center"-->
-        <!--/>-->
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/a"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="172dp"
+        android:background="@drawable/alistar"
+        app:civ_border_width="4dp"
+        app:civ_border_color="#FF000000"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="176dp"
+        android:textSize="16dp"
+        tools:text="Charliesdeomn"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="200dp"
+        android:textSize="16dp"
+        tools:text="Level 126"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        />
         </FrameLayout>
     </ScrollView>

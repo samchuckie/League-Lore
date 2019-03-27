@@ -4,26 +4,27 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+//@Entity
 public class ChampionDetails {
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
+  //  @ColumnInfo(name = "key")
     @SerializedName("key")
     private String key;
 
-     @SerializedName("id")
+   // @PrimaryKey
+    @SerializedName("id")
     private String id;
 
+   // @ColumnInfo(name = "name")
     @SerializedName("name")
     private String name;
 
+    //@ColumnInfo(name = "title")
     @SerializedName("title")
     private String title;
+
+   // @ColumnInfo(name = "blurb")
+    @SerializedName("blurb")
+    private String blurb;
 
     @SerializedName("image")
     private ChampionImage championImage;
@@ -34,14 +35,19 @@ public class ChampionDetails {
     @SerializedName("lore")
     private String lore;
 
-    @SerializedName("blurb")
-    private String blurb;
-
     @SerializedName("championSpells")
     private ChampionSpells championSpells;
 
     @SerializedName("passive")
     private ChampionPassive championPassive;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getLore() {
         return lore;

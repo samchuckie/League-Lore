@@ -6,7 +6,12 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Summoner {
-        @SerializedName("id")
+    public Summoner(List<ChampionsPlayed> championsPlayedList, List<SummonerRankedInfo> summonerRankedInfoList) {
+        this.championsPlayedList = championsPlayedList;
+        this.summonerRankedInfoList = summonerRankedInfoList;
+    }
+
+    @SerializedName("id")
         @Expose
         private String id;
         @SerializedName("accountId")

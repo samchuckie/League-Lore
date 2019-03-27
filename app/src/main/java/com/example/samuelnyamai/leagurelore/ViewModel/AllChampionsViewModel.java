@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.samuelnyamai.leagurelore.Model.ChampionModel;
+import com.example.samuelnyamai.leagurelore.Model.AltChampionModel;
 import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
 
 public class AllChampionsViewModel extends AndroidViewModel {
@@ -17,7 +17,7 @@ public class AllChampionsViewModel extends AndroidViewModel {
 
     public MutableLiveData<ChampionDetails> getListMutableLiveData(String[] servers) {
 
-         ChampionModel.getListMutableLiveData(servers);
-         return ChampionModel.getListMutableLiveData();
+         AltChampionModel.getListMutableLiveData();
+         return AltChampionModel.getListMutableLiveDatas();
     }
 }

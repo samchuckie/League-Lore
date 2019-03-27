@@ -36,13 +36,13 @@ public class ChampionAdapter extends RecyclerView.Adapter<ChampionAdapter.ViewHo
         viewHolder.champion_name.setText(championDetailsList.get(i).getName());
         viewHolder.champion_blurb.setText(championDetailsList.get(i).getBlurb());
         viewHolder.champion_title.setText(championDetailsList.get(i).getTitle());
-        StringBuilder icon_path = new StringBuilder(CHAMPION_ICON_BASE_URL).append(championDetailsList.
-                get(i).getChampionImage().getFull());
-        StringBuilder background_path = new StringBuilder(CHAMPION_LOADINGIMAGE_URL).append(championDetailsList.
-                        get(i).getId()).append("_0").append(JPG_IMAGE_EXTENSION);
-        //Log.e("sam" ,"Image path is" + background_path.toString());
-        Picasso.get().load(icon_path.toString()).noFade().into(viewHolder.champion_image);
-        Picasso.get().load(background_path.toString()).noFade().into(viewHolder.champion_background_image);
+        String icon_path = CHAMPION_ICON_BASE_URL + championDetailsList.
+                get(i).getChampionImage().getFull();
+        Picasso.get().load(icon_path).noFade().into(viewHolder.champion_image);
+        String background_path = CHAMPION_LOADINGIMAGE_URL + championDetailsList.
+                get(i).getId() +
+                "_0" + JPG_IMAGE_EXTENSION;
+        Picasso.get().load(background_path).noFade().into(viewHolder.champion_background_image);
     }
 
     @Override
@@ -56,10 +56,10 @@ public class ChampionAdapter extends RecyclerView.Adapter<ChampionAdapter.ViewHo
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView champion_name ,champion_blurb,champion_title;
         ImageView champion_image,champion_background_image;
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             champion_name =itemView.findViewById(R.id.champion_name_tv);
             champion_blurb = itemView.findViewById(R.id.champion_blurb_tv);

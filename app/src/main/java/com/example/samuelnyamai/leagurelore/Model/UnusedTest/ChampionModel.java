@@ -1,4 +1,4 @@
-package com.example.samuelnyamai.leagurelore.Model;
+package com.example.samuelnyamai.leagurelore.Model.UnusedTest;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;

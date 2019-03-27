@@ -15,4 +15,5 @@ public class ServerConstants {
         public static final String S_CHAMPION_BASE_URL = "http://ddragon.leagueoflegends.com/cdn/9.5.1/data/en_US/champion/";
         public static final String RANKED_BASE_URL = "https://euw1.api.riotgames.com/lol/league/v4/positions/by-summoner/";
         public static final String CHAMPIONS_MASTERY_BASE_URL = "https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/";
+        public static final String DATABASE_NAME ="Champions";
 }

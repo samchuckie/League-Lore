@@ -38,7 +38,16 @@ public class ChampionFragment extends Fragment {
         recyclerView.setAdapter(championAdapter);
         String[] servers = getResources().getStringArray(R.array.champions);
         allChampionsViewModel.getListMutableLiveData(servers).observe(getViewLifecycleOwner(), championAdapter::addChampion);
-        // Lambda replaced with methodd expression
+
+        // Lambda replaced with method expression
+
+//        ChampionsDatabase.getChampionDatabseInstance(getContext()).championsDAO().getAllChampions().
+//                observe(this, new Observer<List<ChampionDetails>>() {
+//                    @Override
+//                    public void onChanged(@Nullable List<ChampionDetails> championDetails) {
+//                        Log.e("sam", "The first champion name is " + championDetails.get(0).getName());
+//                    }
+//                });
         return view;
     }
 }
