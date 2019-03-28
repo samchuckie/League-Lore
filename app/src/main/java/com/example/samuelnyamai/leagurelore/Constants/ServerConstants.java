@@ -1,5 +1,7 @@
 package com.example.samuelnyamai.leagurelore.Constants;
 
+import com.example.samuelnyamai.leagurelore.BuildConfig;
+
 public class ServerConstants {
         public static final String NA_BASE_URL = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
         public static final String JPN_BASE_URL ="https://jp1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" ;
@@ -16,4 +18,6 @@ public class ServerConstants {
         public static final String RANKED_BASE_URL = "https://euw1.api.riotgames.com/lol/league/v4/positions/by-summoner/";
         public static final String CHAMPIONS_MASTERY_BASE_URL = "https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/";
         public static final String DATABASE_NAME ="Champions";
+        public static final String API_KEY =BuildConfig.ApiKey;
+
 }

@@ -54,18 +54,18 @@ public class LogIn extends AppCompatActivity {
 
             // So I discovered that calling the getSelectedItem actually calls the onItemSelected ->parent.getSelectedItem(position).toString();
 
-            viewModel.getDetails(serverSpinner.getSelectedItem().toString(),summoner_username.getText().toString());
-            viewModel.getSummonerLiveData().observe(this ,summoneresponse ->{
-                if (summoneresponse.getName() != null)
-                {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(getString(R.string.summoner_name_key), summoneresponse.getName() );
-                    editor.putInt(getString(R.string.summoner_icon_key ),summoneresponse.getProfileIconId());
-                    editor.putInt(getString(R.string.summoner_level_key),summoneresponse.getSummonerLevel());
-                    editor.apply();
-                    startActivity(new Intent(this ,Champions.class));
-                }
-            });
+        viewModel.getDetails(serverSpinner.getSelectedItem().toString(),summoner_username.getText().toString());
+        viewModel.getSummonerLiveData().observe(this ,summoneresponse ->{
+            if (summoneresponse.getName() != null)
+            {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(getString(R.string.summoner_name_key), summoneresponse.getName() );
+                editor.putInt(getString(R.string.summoner_icon_key ),summoneresponse.getProfileIconId());
+                editor.putInt(getString(R.string.summoner_level_key),summoneresponse.getSummonerLevel());
+                editor.apply();
+                startActivity(new Intent(this ,Champions.class));
+            }
         });
-    }
+    });
+}
 }

@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Summoner {
+    public Summoner(){
+
+    }
     public Summoner(List<ChampionsPlayed> championsPlayedList, List<SummonerRankedInfo> summonerRankedInfoList) {
         this.championsPlayedList = championsPlayedList;
         this.summonerRankedInfoList = summonerRankedInfoList;

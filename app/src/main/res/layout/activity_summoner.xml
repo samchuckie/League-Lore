@@ -6,7 +6,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".SummonerActivity"
-        >
+        android:background="@android:color/black"
+
+    >
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="250dp"
-        android:background="@android:color/black"
         android:orientation="vertical"
 
         >
@@ -83,7 +84,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/bronze"
-                android:contentDescription="@string/ranked_solo_emblem" />
+                android:contentDescription="@string/ranked_solo_emblem"
+                android:id="@+id/soloranked_iv"
+                />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -96,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="Ezreal Guardians"
                     android:textColor="@android:color/white"
+                    android:id="@+id/soloranked_tv"
                     />
                 <TextView
                     android:layout_width="match_parent"
@@ -103,6 +107,7 @@
                     android:layout_marginTop="16dp"
                     android:text="Silver 1"
                     android:textColor="@android:color/white"
+                    android:id="@+id/solorankedpoint_tv"
                     />
             </LinearLayout>
 
@@ -118,6 +123,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/silver"
+                android:id="@+id/flexranked_iv"
                 />
             <LinearLayout
                 android:layout_width="0dp"
@@ -131,6 +137,7 @@
                     android:layout_height="wrap_content"
                     android:text="Rammus Ninja"
                     android:textColor="@android:color/white"
+                    android:id="@+id/flexranked_tv"
                     />
                 <TextView
                     android:layout_width="match_parent"
@@ -138,6 +145,7 @@
                     android:text="Silver 1"
                     android:layout_marginTop="16dp"
                     android:textColor="@android:color/white"
+                    android:id="@+id/flexrankedpoints_tv"
                     />
             </LinearLayout>
 
@@ -149,6 +157,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/a"
+        android:id="@+id/summoner_backdrop_iv"
         />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -159,6 +168,7 @@
         android:background="@drawable/alistar"
         app:civ_border_width="4dp"
         app:civ_border_color="#FF000000"
+        android:id="@+id/summoner_currenticon_iv"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -169,6 +179,7 @@
         android:text="Charliesdemon"
         android:textColor="@android:color/white"
         android:gravity="center"
+        android:id="@+id/summonername_tv"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -179,6 +190,7 @@
         android:text="Level 126"
         android:textColor="@android:color/white"
         android:gravity="center"
+        android:id="@+id/summonerlevel_tv"
         />
         </FrameLayout>
     </ScrollView>

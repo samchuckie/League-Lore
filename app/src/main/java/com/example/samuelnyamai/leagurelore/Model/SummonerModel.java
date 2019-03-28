@@ -11,11 +11,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.API_KEY;
+
 public class SummonerModel {
     public static MutableLiveData<Summoner> getLogininstance(String server, String username){
         MutableLiveData<Summoner> summonerMutableLiveData = new MutableLiveData<>();
-        LoginInterface loginInterface = LeagueRetro.getLeagueInstance(server).create(LoginInterface.class);
-        Call<Summoner> summonerCall= loginInterface.getPersonData(username, "RGAPI-8507538e-bb9b-4b56-866c-f7145927471b");
+        LoginInterface loginInterface = LeagueRetro.getLeagueInstanceServers(server).create(LoginInterface.class);
+        Call<Summoner> summonerCall= loginInterface.getPersonData(username, API_KEY);
         summonerCall.enqueue(new Callback<Summoner>() {
             @Override
             public void onResponse(Call<Summoner> call, Response<Summoner> response) {
