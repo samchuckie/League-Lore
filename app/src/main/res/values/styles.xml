@@ -9,18 +9,28 @@
     </style>
 
 
-
-    <style name="SummonerTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
-    </style>
+    <style name="SummonerTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar"></style>
 
 
     <style name="drawer_linear">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="drawer_linear.child" parent="drawer_linear">
         <item name="android:layout_marginLeft">@dimen/margin_left</item>
 
     </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
 
 </resources>

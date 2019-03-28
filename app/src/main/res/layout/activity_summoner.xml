@@ -75,14 +75,14 @@
             android:background="@android:color/white"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:orientation="horizontal"
             >
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                tools:background="@drawable/bronze"
+                android:background="@drawable/bronze"
                 android:contentDescription="@string/ranked_solo_emblem" />
             <LinearLayout
                 android:layout_width="0dp"
@@ -94,14 +94,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Ezreal Guardians"
+                    android:text="Ezreal Guardians"
                     android:textColor="@android:color/white"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    tools:text="Silver 1"
+                    android:text="Silver 1"
                     android:textColor="@android:color/white"
                     />
             </LinearLayout>
@@ -110,14 +110,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:orientation="horizontal"
             >
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                tools:background="@drawable/silver"
+                android:background="@drawable/silver"
                 />
             <LinearLayout
                 android:layout_width="0dp"
@@ -129,13 +129,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Rammus Ninja"
+                    android:text="Rammus Ninja"
                     android:textColor="@android:color/white"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Silver 1"
+                    android:text="Silver 1"
                     android:layout_marginTop="16dp"
                     android:textColor="@android:color/white"
                     />
@@ -166,7 +166,7 @@
         android:layout_marginLeft="64dp"
         android:layout_marginTop="176dp"
         android:textSize="16dp"
-        tools:text="Charliesdeomn"
+        android:text="Charliesdemon"
         android:textColor="@android:color/white"
         android:gravity="center"
         />
@@ -176,7 +176,7 @@
         android:layout_marginLeft="64dp"
         android:layout_marginTop="200dp"
         android:textSize="16dp"
-        tools:text="Level 126"
+        android:text="Level 126"
         android:textColor="@android:color/white"
         android:gravity="center"
         />

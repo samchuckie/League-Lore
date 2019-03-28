@@ -1,10 +1,14 @@
 package com.example.samuelnyamai.leagurelore.Model;
 
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
+import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.example.samuelnyamai.leagurelore.Network.RetroClasses.ChampionRetro;
 import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.ChampionsInterface;
+import com.example.samuelnyamai.leagurelore.Room.ChampionsDatabase;
 import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
 import com.google.gson.Gson;
 
@@ -13,6 +17,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +30,7 @@ public class AltChampionModel {
         return listMutableLiveDatas;
     }
     private static Gson gson = new Gson();
-    public static void getListMutableLiveData() {
+    public static void getListMutableLiveData(Context context) {
         ChampionsInterface championsInterface = ChampionRetro.getAllChampionInstance().create(ChampionsInterface.class);
         Call<ResponseBody> allChampionsCall = championsInterface.getAlternativeChampions();
         allChampionsCall.enqueue(new Callback<ResponseBody>() {
@@ -39,6 +45,7 @@ public class AltChampionModel {
                         String key = keys.next();
                         JSONObject datas = data.getJSONObject(key);
                         ChampionDetails champion = gson.fromJson(datas.toString(), ChampionDetails.class);
+                        ChampionsDatabase.getChampionDatabseInstance(context).championsDAO().addChampion(champion);
                         listMutableLiveDatas.setValue(champion);
                     }
                 } catch (JSONException e) {
