@@ -41,7 +41,6 @@ public class ChampionFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         ChampionAdapter championAdapter = new ChampionAdapter();
         recyclerView.setAdapter(championAdapter);
-        //allChampionsViewModel.getListMutableLiveData(getContext()).observe(getViewLifecycleOwner(), championAdapter::addChampion);
 
         // Lambda replaced with method expression
 

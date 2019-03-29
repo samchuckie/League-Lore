@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<de.hdodenhof.circleimageview.CircleImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginRight="16dp"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:layout_marginLeft="8dp"
+    android:background="@drawable/alistar"
+    app:civ_border_width="4dp"
+    app:civ_border_color="#FF000000"
+    android:id="@+id/championplayedicon_iv"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="16dp" />

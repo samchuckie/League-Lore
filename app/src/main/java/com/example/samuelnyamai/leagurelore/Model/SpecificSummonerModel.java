@@ -1,21 +1,21 @@
 package com.example.samuelnyamai.leagurelore.Model;
 
+import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
 import android.util.Log;
-
 import com.example.samuelnyamai.leagurelore.Network.RetroClasses.ChampionsPlayedRetro;
 import com.example.samuelnyamai.leagurelore.Network.RetroClasses.LeagueRetro;
 import com.example.samuelnyamai.leagurelore.Network.RetroClasses.RankedRetro;
 import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.ChampioMasteryInt;
 import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.LoginInterface;
 import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.RankedInterface;
+import com.example.samuelnyamai.leagurelore.Room.ChampionsDatabase;
 import com.example.samuelnyamai.leagurelore.data.ChampionsPlayed;
 import com.example.samuelnyamai.leagurelore.data.Summoner;
 import com.example.samuelnyamai.leagurelore.data.SummonerRankedInfo;
-
 import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -31,6 +31,13 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.API
 public class SpecificSummonerModel {
     private static MutableLiveData<Summoner> summonerLiveData;
 
+    public static LiveData<String> getChampionbackdrop(Context context, int champid) {
+        return ChampionsDatabase.getChampionDatabseInstance(context).championsDAO().getChampionID(String.valueOf(champid));
+    }
+    public static LiveData<List<String>> getChampionplayedList(Context context, List<String> championplayedlist) {
+        return ChampionsDatabase.getChampionDatabseInstance(context).championsDAO().getListChampionsname(championplayedlist);
+    }
+
     public static MutableLiveData<Summoner> getSummonerLiveData() {
         return summonerLiveData;
     }
@@ -39,6 +46,9 @@ public class SpecificSummonerModel {
     public static void getData(){
         summonerLiveData =new MutableLiveData<>();
         searchsummoner = new Summoner();
+
+        // TODO CHANGE THE SERVER CHOICE FROM MANUAL TO DYNAMIC
+
         LoginInterface loginInterface = LeagueRetro.getLeagueInstanceServers("EUW").create(LoginInterface.class);
         Call<Summoner> summonerCall = loginInterface.getPersonData("charliesdemon", API_KEY);
         summonerCall.enqueue(new Callback<Summoner>() {

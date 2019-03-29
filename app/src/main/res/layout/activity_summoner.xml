@@ -24,56 +24,30 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Champions"
+            android:text="@string/champions"
             android:textColor="@android:color/white"
             android:layout_marginLeft="8dp"
-            />
+            android:layout_marginStart="8dp" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/white"/>
-        <LinearLayout
+
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/alistar"
-                app:civ_border_width="4dp"
-                app:civ_border_color="#FF000000"
-                />
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/alistar"
-                app:civ_border_width="4dp"
-                app:civ_border_color="#FF000000"
-                />
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/alistar"
-                app:civ_border_width="4dp"
-                app:civ_border_color="#FF000000"
-                />
-        </LinearLayout>
+            tools:layout_height="60dp"
+            android:orientation="horizontal"
+            android:id="@+id/championsplayed_rv"
+            tools:listitem="@layout/champions_played">
+
+        </android.support.v7.widget.RecyclerView>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/white"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -83,7 +57,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bronze"
+                tools:background="@drawable/bronze"
                 android:contentDescription="@string/ranked_solo_emblem"
                 android:id="@+id/soloranked_iv"
                 />
@@ -97,7 +71,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ezreal Guardians"
+                    tools:text="Ezreal Guardians"
                     android:textColor="@android:color/white"
                     android:id="@+id/soloranked_tv"
                     />
@@ -105,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Silver 1"
+                    tools:text="Silver 1"
                     android:textColor="@android:color/white"
                     android:id="@+id/solorankedpoint_tv"
                     />
@@ -122,7 +96,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/silver"
+                tools:background="@drawable/silver"
                 android:id="@+id/flexranked_iv"
                 />
             <LinearLayout
@@ -135,14 +109,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rammus Ninja"
+                    tools:text="Rammus Ninja"
                     android:textColor="@android:color/white"
                     android:id="@+id/flexranked_tv"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Silver 1"
+                    tools:text="Silver 1"
                     android:layout_marginTop="16dp"
                     android:textColor="@android:color/white"
                     android:id="@+id/flexrankedpoints_tv"
@@ -156,7 +130,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/a"
+        tools:background="@drawable/a"
         android:id="@+id/summoner_backdrop_iv"
         />
 
@@ -169,28 +143,44 @@
         app:civ_border_width="4dp"
         app:civ_border_color="#FF000000"
         android:id="@+id/summoner_currenticon_iv"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="176dp"
-        android:textSize="16dp"
-        android:text="Charliesdemon"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        android:id="@+id/summonername_tv"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="200dp"
-        android:textSize="16dp"
-        android:text="Level 126"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        android:id="@+id/summonerlevel_tv"
-        />
+        android:layout_marginStart="8dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="176dp"
+            android:textSize="16dp"
+            tools:text="Charliesdemon"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:id="@+id/summonername_tv"
+            android:layout_marginStart="64dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginStart="64dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/level"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                tools:text="126"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:id="@+id/summonerlevel_tv"
+                />
+        </LinearLayout>
         </FrameLayout>
     </ScrollView>

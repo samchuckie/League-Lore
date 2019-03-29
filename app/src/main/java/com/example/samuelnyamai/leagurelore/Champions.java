@@ -18,6 +18,7 @@ public class Champions extends AppCompatActivity {
     // TODO CAN DATABINDING BE USED WITH NAV_DRAWER
     // TODO BACK ACTIVITY SHOULD EXIT THE APP NOT GO TO LOG IN
     // TODO PREFERENCE FRAGMENT FOR LANGUAGE
+    //  TODO ADD CHALLENGER TIER FOR THE NAVIGATION OPTIONS
 
     SharedPreferences sharedPreferences;
 
@@ -36,8 +37,7 @@ public class Champions extends AppCompatActivity {
             int user_icon = sharedPreferences.getInt(getString(R.string.summoner_icon_key), 0);
             username_tv.setText(username_pref);
             level_tv.setText(String.valueOf(user_level));
-            StringBuilder path = new StringBuilder(PROFILE_BASE_URL).append(user_icon).append(PNG_IMAGE_EXTENSION);
-            Picasso.get().load(path.toString()).noFade().into(usericon_iv);
+            Picasso.get().load(PROFILE_BASE_URL + user_icon + PNG_IMAGE_EXTENSION).noFade().into(usericon_iv);
         }
         ChampionFragment championFragment = new ChampionFragment();
         FragmentManager fragmentManager= getSupportFragmentManager();
