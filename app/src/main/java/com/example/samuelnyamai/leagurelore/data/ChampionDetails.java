@@ -3,10 +3,15 @@ package com.example.samuelnyamai.leagurelore.data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import com.example.samuelnyamai.leagurelore.Room.TypeConvertors.ChampionSkinConvertors;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,6 +26,7 @@ public class ChampionDetails {
     private ChampionImage championImage;
     public ChampionImage getChampionImage() {return championImage;}
     public void setChampionImage(ChampionImage championImage) { this.championImage = championImage;}
+
 
     @SerializedName("skins")
     private List<ChampionSkin> champImagesList;
@@ -102,8 +108,6 @@ public class ChampionDetails {
     public void setEnemytips(List<String> enemytips) {
         this.enemytips = enemytips;
     }
-
-
 
 
 }

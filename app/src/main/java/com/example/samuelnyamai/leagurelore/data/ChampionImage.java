@@ -1,8 +1,11 @@
 package com.example.samuelnyamai.leagurelore.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class ChampionImage {
+public class ChampionImage implements Parcelable {
    @SerializedName("full")
    private String full;
     public String getFull() {
@@ -12,4 +15,32 @@ public class ChampionImage {
         this.full = full;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.full);
+    }
+
+    public ChampionImage() {
+    }
+
+    protected ChampionImage(Parcel in) {
+        this.full = in.readString();
+    }
+
+    public static final Parcelable.Creator<ChampionImage> CREATOR = new Parcelable.Creator<ChampionImage>() {
+        @Override
+        public ChampionImage createFromParcel(Parcel source) {
+            return new ChampionImage(source);
+        }
+
+        @Override
+        public ChampionImage[] newArray(int size) {
+            return new ChampionImage[size];
+        }
+    };
 }

@@ -4,5 +4,6 @@
     <dimen name="margin_left">8dp</dimen>
     <dimen name="margin_drawer_lineartop">8dp</dimen>
     <dimen name="first_child_width">80dp</dimen>
+    <dimen name="icon_dim">64dp</dimen>
 
 </resources>

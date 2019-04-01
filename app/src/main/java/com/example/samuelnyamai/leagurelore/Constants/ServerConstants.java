@@ -20,6 +20,11 @@ public class ServerConstants {
         public static final String PNG_IMAGE_EXTENSION = ".png";
         public static final String JPG_IMAGE_EXTENSION = ".jpg";
         public static final String DATABASE_NAME ="Champions";
+        public static final String KEY_EXTRA = "KEY";
+        public static final String NAME_EXTRA = "NAME";
+        public static final String TITLE_EXTRA = "TITLE";
+        public static final String ID_EXTRA = "ID";
+        public static final String IMAGE_EXTRA = "IMAGE";
         public static final String API_KEY =BuildConfig.ApiKey;
 
 }

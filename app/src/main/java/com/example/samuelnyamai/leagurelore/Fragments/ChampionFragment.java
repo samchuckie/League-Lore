@@ -1,7 +1,7 @@
 package com.example.samuelnyamai.leagurelore.Fragments;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,19 +12,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.samuelnyamai.leagurelore.Adapters.ChampionAdapter;
+import com.example.samuelnyamai.leagurelore.IndividualChamp;
 import com.example.samuelnyamai.leagurelore.R;
-import com.example.samuelnyamai.leagurelore.Room.ChampionsDatabase;
 import com.example.samuelnyamai.leagurelore.ViewModel.AllChampionsViewModel;
 import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
-
-import java.util.List;
 import java.util.Objects;
 
-    // TODO SIDE PROJECT FOR MOVIEDB CHANGE THE WHOLE THING. FOR ACTORS USE DIALOG AS WITH CHAMPIONS HERE
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.ID_EXTRA;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.IMAGE_EXTRA;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.KEY_EXTRA;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.NAME_EXTRA;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.TITLE_EXTRA;
 
-public class ChampionFragment extends Fragment {
+// TODO SIDE PROJECT FOR MOVIEDB CHANGE THE WHOLE THING. FOR ACTORS USE DIALOG AS WITH CHAMPIONS HERE
+
+public class ChampionFragment extends Fragment implements ChampionAdapter.ItemClickedInterface {
     AllChampionsViewModel allChampionsViewModel;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,22 +42,35 @@ public class ChampionFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.champion_rv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        ChampionAdapter championAdapter = new ChampionAdapter();
+        ChampionAdapter championAdapter = new ChampionAdapter(this);
         recyclerView.setAdapter(championAdapter);
 
         // Lambda replaced with method expression
 
         // TODO MAKE CALL TO AllChampAsync
-        ChampionsDatabase.getChampionDatabseInstance(getContext()).championsDAO().getAllChampions().
-                observe(this, championDetails -> {
+        allChampionsViewModel.getChampionList().observe(this, championDetails -> {
                     if (championDetails.size()!=0){
                         for (ChampionDetails champ:championDetails) {
-                            Log.e("sam", "championdetail is " + champ.getName());
+                           // Log.e("sam", "championdetail is " + champ.getName());
                             championAdapter.addChampion(champ);
-
                         }
                     }
+                    else {
+                            allChampionsViewModel.getListMutableLiveData();
+
+                        }
                 });
         return view;
+    }
+
+    @Override
+    public void clickeditem(ChampionDetails championDetails) {
+        Intent indivial_champ = new Intent(getContext(), IndividualChamp.class);
+        indivial_champ.putExtra(KEY_EXTRA,championDetails.getKey());
+        indivial_champ.putExtra(NAME_EXTRA,championDetails.getName());
+        indivial_champ.putExtra(TITLE_EXTRA,championDetails.getTitle());
+        indivial_champ.putExtra(ID_EXTRA,championDetails.getId());
+        indivial_champ.putExtra(IMAGE_EXTRA,championDetails.getChampionImage().getFull());
+        startActivity(indivial_champ);
     }
 }

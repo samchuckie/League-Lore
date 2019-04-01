@@ -52,10 +52,11 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:orientation="horizontal"
+
             >
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:background="@drawable/bronze"
                 android:contentDescription="@string/ranked_solo_emblem"
@@ -73,6 +74,7 @@
                     android:layout_height="wrap_content"
                     tools:text="Ezreal Guardians"
                     android:textColor="@android:color/white"
+                    android:layout_marginTop="16dp"
                     android:id="@+id/soloranked_tv"
                     />
                 <TextView
@@ -83,6 +85,17 @@
                     android:textColor="@android:color/white"
                     android:id="@+id/solorankedpoint_tv"
                     />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    tools:text="League Points:"
+                    android:textColor="@android:color/white"
+                    android:id="@+id/leaguepointssolo_tv"
+                    />
+
+
+
             </LinearLayout>
 
         </LinearLayout>
@@ -94,7 +107,7 @@
             >
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:background="@drawable/silver"
                 android:id="@+id/flexranked_iv"
@@ -110,6 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Rammus Ninja"
+                    android:layout_marginTop="16dp"
                     android:textColor="@android:color/white"
                     android:id="@+id/flexranked_tv"
                     />
@@ -120,6 +134,14 @@
                     android:layout_marginTop="16dp"
                     android:textColor="@android:color/white"
                     android:id="@+id/flexrankedpoints_tv"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    tools:text="League Points:"
+                    android:textColor="@android:color/white"
+                    android:id="@+id/leaguepointsflex_tv"
                     />
             </LinearLayout>
 

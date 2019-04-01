@@ -1,5 +1,6 @@
 package com.example.samuelnyamai.leagurelore;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -42,5 +43,9 @@ public class Champions extends AppCompatActivity {
         ChampionFragment championFragment = new ChampionFragment();
         FragmentManager fragmentManager= getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.champion_framelayout ,championFragment).commit();
+        usericon_iv.setOnClickListener(view -> {
+            Intent intent = new Intent(this , SummonerActivity.class);
+            startActivity((intent));
+        });
     }
 }

@@ -6,4 +6,7 @@
     android:layout_height="wrap_content"
     tools:text="1. Dont"
     android:id="@+id/tips_tv"
+    android:textColor="@android:color/white"
+    tools:background="@android:color/black"
+
     />

@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IndividualChamp">
+    tools:context=".IndividualChamp"
+    android:background="@android:color/black"
+    >
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -41,7 +43,8 @@
         android:layout_height="match_parent"
         android:id="@+id/individual_frame"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:paddingBottom="56dp"/>
+        android:layout_marginBottom="56dp"
+        />
 
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"

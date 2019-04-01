@@ -30,7 +30,6 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.API
 
 public class SpecificSummonerModel {
     private static MutableLiveData<Summoner> summonerLiveData;
-
     public static LiveData<String> getChampionbackdrop(Context context, int champid) {
         return ChampionsDatabase.getChampionDatabseInstance(context).championsDAO().getChampionID(String.valueOf(champid));
     }
@@ -58,7 +57,6 @@ public class SpecificSummonerModel {
                 searchsummoner=response.body();
                 getPUUD(response.body().getId());
             }
-
             @Override
             public void onFailure(Call<Summoner> call, Throwable t) {
                 Log.e("sam", "Error found is " + t.getMessage());
@@ -92,24 +90,15 @@ public class SpecificSummonerModel {
         });
         summonerObservable.subscribe(new Observer<Summoner>() {
             @Override
-            public void onSubscribe(Disposable disposable) {
-
-            }
-
+            public void onSubscribe(Disposable disposable) {}
             @Override
             public void onNext(Summoner summoner) {
                 summonerLiveData.setValue(summoner);
             }
-
             @Override
-            public void onError(Throwable throwable) {
-
-            }
-
+            public void onError(Throwable throwable) { }
             @Override
-            public void onComplete() {
-
-            }
+            public void onComplete() {}
         });
     }
 }

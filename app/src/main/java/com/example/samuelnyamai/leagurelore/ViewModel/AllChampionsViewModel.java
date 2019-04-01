@@ -8,29 +8,40 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.samuelnyamai.leagurelore.Model.AllChampAsync;
 import com.example.samuelnyamai.leagurelore.Model.AltChampionModel;
+import com.example.samuelnyamai.leagurelore.Room.ChampionsDatabase;
 import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
 
+import java.util.List;
+
 public class AllChampionsViewModel extends AndroidViewModel {
-    MutableLiveData<ChampionDetails> liveData;
-    public AllChampionsViewModel(@NonNull Application application) {
-        super(application);
-        Log.e("sam","Creating a new viewmodel");
+    private MutableLiveData<ChampionDetails> liveData;
+    private LiveData<List<ChampionDetails>> championList;
+
+    public LiveData<List<ChampionDetails>> getChampionList() {
+        championList= AllChampAsync.getchampsInstance(getApplication());
+        if (championList==null){
+            Log.e("sam", "The list is null");
+            getListMutableLiveData();
+        }
+        Log.e("sam" ,"The champion list is being fetched from database");
+        return championList;
     }
 
-    public MutableLiveData<ChampionDetails> getListMutableLiveData(Context context) {
+
+    private AltChampionModel altChampionModel ;
+    public AllChampionsViewModel(@NonNull Application application) {
+        super(application);
+        Log.e("sam","Creating a new all champions viewmodel");
+        altChampionModel = new AltChampionModel(getApplication());
+    }
+
+    public MutableLiveData<ChampionDetails> getListMutableLiveData() {
          if(liveData==null){
-             AltChampionModel.getListMutableLiveData(context);
-             liveData =AltChampionModel.getListMutableLiveDatas();
+             altChampionModel.getListMutableLiveData();
+             liveData =altChampionModel.getListMutableLiveDatas();
          }
          return liveData;
-    }
-    public MutableLiveData<ChampionDetails> getListMutableLiveData(Context context, String champion) {
-        if(liveData==null)
-        {
-            AltChampionModel.getListMutableLiveData(context ,champion);
-            liveData =AltChampionModel.getListMutableLiveDatas();
-        }
-        return liveData;
     }
 }

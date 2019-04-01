@@ -13,40 +13,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.samuelnyamai.leagurelore.Adapters.AbilitiesAdapter;
 import com.example.samuelnyamai.leagurelore.R;
 import com.example.samuelnyamai.leagurelore.ViewModel.AllChampionsViewModel;
+import com.example.samuelnyamai.leagurelore.ViewModel.IndividualViewModel;
 import com.example.samuelnyamai.leagurelore.data.ChampionPassive;
 import com.squareup.picasso.Picasso;
-
 import java.util.Objects;
 
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_PASSIVE;
 
 public class AbilitiesFragment extends Fragment {
-    AllChampionsViewModel allChampionsViewModel;
+    IndividualViewModel individualViewModel;
     TextView passive_tv,passivename_tv;
     ImageView passive_icon;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allChampionsViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(AllChampionsViewModel.class);
+        individualViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(IndividualViewModel.class);
     }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.abilities_fragment, container, false);
         RecyclerView abilites_rv = view.findViewById(R.id.abilites_rv);
-        passive_icon =view.findViewById(R.id.passive_icon);
-        passive_tv =view.findViewById(R.id.passive_tv);
-        passivename_tv =view.findViewById(R.id.passivename_tv);
+        passive_icon =view.findViewById(R.id.ability_icon);
+        passivename_tv =view.findViewById(R.id.abilityname_tv);
+        passive_tv =view.findViewById(R.id.abilitydesc_tv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         AbilitiesAdapter abilitiesAdapter = new AbilitiesAdapter();
         abilites_rv.setLayoutManager(linearLayoutManager);
         abilites_rv.setAdapter(abilitiesAdapter);
-        allChampionsViewModel.getListMutableLiveData(getContext(),"Ahri").observe(this,observer-> {
+        individualViewModel.getListMutableLiveData().observe(this,observer-> {
             Log.e("sam" , "The passive is " + observer.getChampionPassive().getDescription());
             Log.e("sam" , "The spell is " + observer.getChampionSpells().get(0).getName());
             abilitiesAdapter.setAbilities(observer.getChampionSpells());

@@ -14,17 +14,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.samuelnyamai.leagurelore.Adapters.TipsAdapter;
+import com.example.samuelnyamai.leagurelore.IndividualChamp;
 import com.example.samuelnyamai.leagurelore.R;
 import com.example.samuelnyamai.leagurelore.ViewModel.AllChampionsViewModel;
+import com.example.samuelnyamai.leagurelore.ViewModel.IndividualViewModel;
 
 import java.util.Objects;
 
 public class LoreFragment extends Fragment {
-    AllChampionsViewModel allChampionsViewModel;
+    IndividualViewModel individualViewModel;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allChampionsViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(AllChampionsViewModel.class);
+        individualViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(IndividualViewModel.class);
     }
     @Nullable
     @Override
@@ -43,10 +45,20 @@ public class LoreFragment extends Fragment {
         TipsAdapter enemies = new TipsAdapter();
         allies_rv.setAdapter(allies);
         enemies_rv.setAdapter(enemies);
-        allChampionsViewModel.getListMutableLiveData(getContext(),"Ahri").observe(this,observer->{
-            lore_tv.setText(observer.getLore());
-            allies.setTips(observer.getAlltips());
-            enemies.setTips(observer.getEnemytips());
+        individualViewModel.getListMutableLiveData().observe(this,observer->{
+
+            if(observer.getAlltips()==null){
+                individualViewModel.callChampion("");
+
+                Log.e("sam", "Champ tips is so null");
+
+            }
+            else {
+                lore_tv.setText(observer.getLore());
+                allies.setTips(observer.getAlltips());
+                enemies.setTips(observer.getEnemytips());
+                Log.e("sam", "Champ ally is notnull");
+            }
         });
         return view;
     }

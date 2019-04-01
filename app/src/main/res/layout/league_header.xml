@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/user_icon"
         android:contentDescription="@string/icon_content_description"
+        tools:background="@drawable/e"
         />
 <LinearLayout
     android:layout_width="match_parent"

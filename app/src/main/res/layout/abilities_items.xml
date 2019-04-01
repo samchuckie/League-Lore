@@ -4,7 +4,13 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+    tools:background="@android:color/black"
+    >
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -13,21 +19,26 @@
             android:contentDescription="@string/abilitie_icon" />
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            >
+            android:paddingLeft="8dp"
+            android:paddingStart="8dp">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Q: Worlds end"
                 android:id="@+id/abilityname_tv"
+                android:layout_marginBottom="8dp"
+                android:textColor="@android:color/white"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Aatrox slams down hs sword"
                 android:id="@+id/abilitydesc_tv"
+                android:textColor="@android:color/white"
+
                 />
 
         </LinearLayout>

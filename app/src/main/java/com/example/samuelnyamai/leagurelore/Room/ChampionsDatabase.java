@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.samuelnyamai.leagurelore.Adapters.ChampionAdapter;
 import com.example.samuelnyamai.leagurelore.Room.TypeConvertors.ChampionSkinConvertors;
 import com.example.samuelnyamai.leagurelore.Room.TypeConvertors.ImageConvertor;
 import com.example.samuelnyamai.leagurelore.Room.TypeConvertors.ListConvertor;
@@ -22,16 +23,23 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.DAT
 
 public abstract class ChampionsDatabase extends RoomDatabase {
 
-    //  TODO make singleton of ChampionDatabase instance
     //  TODO FIRST CHECK IF REVISION_NUMBER HAS CHANGED IF YES MAKE A CALL AND CHANGE THE DETAILS OF USER AND UPDATE SHAREDPREFERENCE
     //  TODO IF (INTERNET)->CHECK PATCH_NUMBER.
     //  TODO IF (GREATER) MAKE A NETWORK CALL AND UPDATE THE DATABASE
     //  TODO IF(EQUAL) -> MAKE A CALL TO THE DATABASE TO RETURN LIST OF CHAMPIONS
+    private static ChampionsDatabase championsDatabase;
 
     public static ChampionsDatabase getChampionDatabseInstance(Context context){
-        Log.e("sam" ,"An instance is being created");
-        return Room.databaseBuilder(context,ChampionsDatabase.class,DATABASE_NAME).
-                fallbackToDestructiveMigration().allowMainThreadQueries().build();
+        if(championsDatabase==null) {
+            synchronized (ChampionsDatabase.class) {
+                Log.e("sam", "An instance is being created");
+                championsDatabase = Room.databaseBuilder(context, ChampionsDatabase.class, DATABASE_NAME).
+                        fallbackToDestructiveMigration()
+                        //.allowMainThreadQueries()
+                        .build();
+            }
+        }
+            return championsDatabase;
     }
     public abstract ChampionsDAO championsDAO();
 }

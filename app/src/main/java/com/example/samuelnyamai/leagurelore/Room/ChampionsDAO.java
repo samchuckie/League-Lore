@@ -12,8 +12,12 @@ import java.util.List;
 
 @Dao
 public interface ChampionsDAO {
-    @Query("SELECT * FROM ChampionDetails")
+    @Query("SELECT * FROM ChampionDetails order by id")
     LiveData<List<ChampionDetails>> getAllChampions();
+
+    @Query("SELECT * FROM ChampionDetails WHERE `key`=:key")
+    LiveData<ChampionDetails> getSpecificChampions(String key);
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addChampion(ChampionDetails championDetails);

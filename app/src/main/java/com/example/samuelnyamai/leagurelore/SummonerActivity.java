@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.samuelnyamai.leagurelore.Adapters.ChampionPLayedAdapter;
@@ -52,8 +53,10 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PRO
 
 public class SummonerActivity extends AppCompatActivity {
     // TODO EXTRACT THE NAME AND LEVEL TO A SEPARATE FILE AND INCLUDE THEM IN BOTH LAYOUT
+    // TODO ADD A FAB FOR HISTORY
+    // TODO ADD PROGRESSBAR
 
-    TextView s_name,s_level,sr_name,fr_name,sr_points,fr_points;
+    TextView s_name,s_level,sr_name,fr_name,sr_points,fr_points ,leaguepointssolo_tv ,leaguepointsflex_tv;
     ImageView summoner_backdrop_iv, summoner_currenticon_iv,soloranked_iv,flexranked_iv;
     RecyclerView championsplayed_rv;
     Specific_SummonerViewModel viewModeler;
@@ -73,6 +76,8 @@ public class SummonerActivity extends AppCompatActivity {
         flexranked_iv = findViewById(R.id.flexranked_iv);
         fr_name = findViewById(R.id.flexranked_tv);
         fr_points = findViewById(R.id.flexrankedpoints_tv);
+        leaguepointssolo_tv = findViewById(R.id.leaguepointssolo_tv);
+        leaguepointsflex_tv = findViewById(R.id.leaguepointsflex_tv);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         championsplayed_rv =  findViewById(R.id.championsplayed_rv);
         championsplayed_rv.setLayoutManager(layoutManager);
@@ -84,10 +89,6 @@ public class SummonerActivity extends AppCompatActivity {
     private void updateUi(Summoner summoner) {
         s_name.setText(summoner.getName());
         s_level.setText(String.valueOf(summoner.getSummonerLevel()));
-        sr_name.setText(summoner.getSummonerRankedInfoList().get(0).getLeagueName());
-        sr_points.setText(String.valueOf(summoner.getSummonerRankedInfoList().get(0).getLeaguePoints()));
-        fr_name.setText(summoner.getSummonerRankedInfoList().get(1).getLeagueName());
-        fr_points.setText(String.valueOf(summoner.getSummonerRankedInfoList().get(1).getLeaguePoints()));
         int champid=summoner.getChampionsPlayedList().get(0).getChampionId();
         Picasso.get().load(PROFILE_BASE_URL + summoner.getProfileIconId() + PNG_IMAGE_EXTENSION).into(summoner_currenticon_iv);
         viewModeler.getBackdrop_image(this,champid).observe(this,name ->{
@@ -100,10 +101,34 @@ public class SummonerActivity extends AppCompatActivity {
         viewModeler.getChampionsPlayedList(this,champidList).observe(this,observer->{
             championPLayedAdapter.setChampionsPlayedlist(observer);
         });
-        getDrawable(summoner.getSummonerRankedInfoList().get(0).getTier(),soloranked_iv);
-        getDrawable(summoner.getSummonerRankedInfoList().get(1).getTier(),flexranked_iv);
+        rankedUI(summoner);
+        flexUI(summoner);
     }
 
+    private void rankedUI(Summoner summoner) {
+        String solo = summoner.getSummonerRankedInfoList().get(0).getTier();
+        String solo_points = solo + " " + String.valueOf(summoner.getSummonerRankedInfoList().get(0).getRank()) ;
+        sr_name.setText(summoner.getSummonerRankedInfoList().get(0).getLeagueName());
+        String all = String.valueOf(summoner.getSummonerRankedInfoList().get(0).getLeaguePoints())+ " LP" + "  /"
+                + String.valueOf(summoner.getSummonerRankedInfoList().get(0).getWins()) + "W " +
+                String.valueOf(summoner.getSummonerRankedInfoList().get(0).getLosses()) + "L";
+        sr_points.setText(solo_points);
+        leaguepointssolo_tv.setText(all);
+
+        getDrawable(solo,soloranked_iv);
+
+    }
+    private void flexUI(Summoner summoner) {
+        String flex = summoner.getSummonerRankedInfoList().get(1).getTier();
+        String flex_points = flex + " " + String.valueOf(summoner.getSummonerRankedInfoList().get(1).getRank()) ;
+        fr_name.setText(summoner.getSummonerRankedInfoList().get(1).getLeagueName());
+        fr_points.setText(flex_points);
+        String all = String.valueOf(summoner.getSummonerRankedInfoList().get(1).getLeaguePoints())+ " LP" + "  /"
+                        + String.valueOf(summoner.getSummonerRankedInfoList().get(1).getWins()) + "W " +
+                        String.valueOf(summoner.getSummonerRankedInfoList().get(1).getLosses()) + "L";
+        leaguepointsflex_tv.setText(all);
+        getDrawable(flex,flexranked_iv);
+    }
 
     private void getDrawable(String tier,ImageView ranked_type) {
         switch (tier) {

@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:paddingTop="16dp"
     android:elevation="6dp"
+    tools:background="@android:color/black"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="@android:color/white"
             android:id="@+id/lore_tv"
+            android:textColor="@android:color/white"
             tools:text="Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become whole."
             />
 
@@ -29,7 +30,9 @@
         android:layout_height="wrap_content"
         android:text="@string/allies"
         android:layout_marginTop="8dp"
-        />
+        android:textColor="@android:color/white"
+
+            />
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enemies"
+            android:textColor="@android:color/white"
             android:layout_marginTop="8dp"
 
             />
