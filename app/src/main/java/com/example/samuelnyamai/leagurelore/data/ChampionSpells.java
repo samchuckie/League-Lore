@@ -9,7 +9,6 @@ public class ChampionSpells {
 
     @SerializedName("name")
     private String name;
-
     @SerializedName("description")
     private String description;
 

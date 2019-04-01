@@ -127,60 +127,8 @@
 
 
     </LinearLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:background="@drawable/a"
-        android:id="@+id/summoner_backdrop_iv"
-        />
+ <include layout="@layout/header_file">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="172dp"
-        android:background="@drawable/alistar"
-        app:civ_border_width="4dp"
-        app:civ_border_color="#FF000000"
-        android:id="@+id/summoner_currenticon_iv"
-        android:layout_marginStart="8dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="64dp"
-            android:layout_marginTop="176dp"
-            android:textSize="16dp"
-            tools:text="Charliesdemon"
-            android:textColor="@android:color/white"
-            android:gravity="center"
-            android:id="@+id/summonername_tv"
-            android:layout_marginStart="64dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="64dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginStart="64dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:text="@string/level"
-                android:textColor="@android:color/white"
-                android:gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                tools:text="126"
-                android:textColor="@android:color/white"
-                android:gravity="center"
-                android:id="@+id/summonerlevel_tv"
-                />
-        </LinearLayout>
+ </include>
         </FrameLayout>
     </ScrollView>

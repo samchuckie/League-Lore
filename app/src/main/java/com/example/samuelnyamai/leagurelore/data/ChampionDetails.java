@@ -24,21 +24,19 @@ public class ChampionDetails {
 
     @SerializedName("skins")
     private List<ChampionSkin> champImagesList;
-
     public List<ChampionSkin> getChampImagesList() {
         return champImagesList;
     }
-
     public void setChampImagesList(List<ChampionSkin> champImagesList) {
         this.champImagesList = champImagesList;
     }
 
-    @SerializedName("championSpells")
-    private ChampionSpells championSpells;
-    public ChampionSpells getChampionSpells() {
+    @SerializedName("spells")
+    private List<ChampionSpells> championSpells;
+    public List<ChampionSpells> getChampionSpells() {
         return championSpells;
     }
-    public void setChampionSpells(ChampionSpells championSpells) {
+    public void setChampionSpells(List<ChampionSpells> championSpells) {
         this.championSpells = championSpells;
     }
 
@@ -86,5 +84,26 @@ public class ChampionDetails {
     private String title;
     public String getTitle() {return title;}
     public void setTitle(String title) {this.title = title;}
+
+    @SerializedName("allytips")
+    List<String >alltips ;
+    public List<String> getAlltips() {
+        return alltips;
+    }
+    public void setAlltips(List<String> alltips) {
+        this.alltips = alltips;
+    }
+
+    @SerializedName("enemytips")
+    List<String >enemytips ;
+    public List<String> getEnemytips() {
+        return enemytips;
+    }
+    public void setEnemytips(List<String> enemytips) {
+        this.enemytips = enemytips;
+    }
+
+
+
 
 }

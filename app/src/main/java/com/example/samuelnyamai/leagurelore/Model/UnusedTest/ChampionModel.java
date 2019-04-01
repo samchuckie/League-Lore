@@ -26,7 +26,7 @@ public class ChampionModel {
     public static void getListMutableLiveData(String[] champion_array) {
         ChampionsInterface championsInterface = ChampionRetro.getAllChampionInstance().create(ChampionsInterface.class);
         for (String champ : champion_array) {
-            Call<ResponseBody> allChampionsCall = championsInterface.getAllChampions(champ);
+            Call<ResponseBody> allChampionsCall = championsInterface.getSpecificChampion(champ);
             allChampionsCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

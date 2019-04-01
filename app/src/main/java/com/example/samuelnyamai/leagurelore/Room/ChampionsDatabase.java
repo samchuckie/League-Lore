@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.samuelnyamai.leagurelore.Room.TypeConvertors.ChampionSkinConvertors;
 import com.example.samuelnyamai.leagurelore.Room.TypeConvertors.ImageConvertor;
+import com.example.samuelnyamai.leagurelore.Room.TypeConvertors.ListConvertor;
 import com.example.samuelnyamai.leagurelore.Room.TypeConvertors.PassiveConvertor;
 import com.example.samuelnyamai.leagurelore.Room.TypeConvertors.SpellConvertor;
 import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
@@ -16,8 +17,8 @@ import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
 
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.DATABASE_NAME;
 
-@Database(entities = {ChampionDetails.class}, version = 3,exportSchema = false)
-@TypeConverters({ChampionSkinConvertors.class , ImageConvertor.class, PassiveConvertor.class, SpellConvertor.class})
+@Database(entities = {ChampionDetails.class}, version = 4,exportSchema = false)
+@TypeConverters({ChampionSkinConvertors.class , ImageConvertor.class, PassiveConvertor.class, SpellConvertor.class , ListConvertor.class})
 
 public abstract class ChampionsDatabase extends RoomDatabase {
 

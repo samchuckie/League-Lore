@@ -44,7 +44,7 @@ public class SpecificSummonerModel {
 
     private static Summoner searchsummoner;
     public static void getData(){
-        summonerLiveData =new MutableLiveData<>();
+        summonerLiveData = new MutableLiveData<>();
         searchsummoner = new Summoner();
 
         // TODO CHANGE THE SERVER CHOICE FROM MANUAL TO DYNAMIC
@@ -98,8 +98,6 @@ public class SpecificSummonerModel {
 
             @Override
             public void onNext(Summoner summoner) {
-                Log.e("sam", "The champion id is " + summoner.getChampionsPlayedList().get(0).getChampionId());
-                Log.e("sam", "The champion ranked name is " + summoner.getSummonerRankedInfoList().get(0).getLeagueName());
                 summonerLiveData.setValue(summoner);
             }
 

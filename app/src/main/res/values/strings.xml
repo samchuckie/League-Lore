@@ -169,4 +169,10 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="champions">Champions</string>
+    <string name="abilities">Abilities</string>
+    <string name="champion">Champion</string>
+    <string name="allies">Allies</string>
+    <string name="enemies">Enemies</string>
+    <string name="abilitie_icon">abilitie icon</string>
+    <string name="passive_icon">Passive</string>
 </resources>

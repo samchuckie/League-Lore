@@ -3,7 +3,6 @@ package com.example.samuelnyamai.leagurelore.Room.TypeConvertors;
 import android.arch.persistence.room.TypeConverter;
 
 import com.example.samuelnyamai.leagurelore.data.ChampionSkin;
-import com.example.samuelnyamai.leagurelore.data.ChampionSpells;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -11,21 +10,21 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
-public class SpellConvertor {
-    static Gson gson = new Gson();
+public class ListConvertor {
+    private static Gson gson = new Gson();
     @TypeConverter
-    public static List<ChampionSpells> stringToSomeObjectList(String data) {
+    public static List<String> stringToSomeObjectList(String data) {
         if (data == null) {
             return Collections.emptyList();
         }
 
-        Type listType = new TypeToken<List<ChampionSpells>>() {}.getType();
+        Type listType = new TypeToken<List<String>>() {}.getType();
 
         return gson.fromJson(data, listType);
     }
 
     @TypeConverter
-    public static String someObjectListToString(List<ChampionSpells> someObjects) {
+    public static String someObjectListToString(List<String> someObjects) {
         return gson.toJson(someObjects);
     }
 }

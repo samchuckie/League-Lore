@@ -29,34 +29,45 @@ public class AltChampionModel {
     public static MutableLiveData<ChampionDetails> getListMutableLiveDatas() {
         return listMutableLiveDatas;
     }
+    private static Callback<ResponseBody> call =new Callback<ResponseBody>() {
+        @Override
+        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            Log.e("sam","The url call is " + call.request().url());
+            try {
+                JSONObject jsonObject = new JSONObject(response.body().string());
+                JSONObject data = jsonObject.getJSONObject("data");
+                Iterator<String> keys = data.keys();
+                while(keys.hasNext()) {
+                    String key = keys.next();
+                    JSONObject datas = data.getJSONObject(key);
+                    ChampionDetails champion = gson.fromJson(datas.toString(), ChampionDetails.class);
+
+//                    ChampionsDatabase.getChampionDatabseInstance(context).championsDAO().addChampion(champion);
+
+                    Log.e("sam" , "Champion is " + champion.getName());
+                    listMutableLiveDatas.setValue(champion);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+        }
+    };
     private static Gson gson = new Gson();
     public static void getListMutableLiveData(Context context) {
         ChampionsInterface championsInterface = ChampionRetro.getAllChampionInstance().create(ChampionsInterface.class);
         Call<ResponseBody> allChampionsCall = championsInterface.getAlternativeChampions();
-        allChampionsCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.e("sam","The url call is " + call.request().url());
-                try {
-                    JSONObject jsonObject = new JSONObject(response.body().string());
-                    JSONObject data = jsonObject.getJSONObject("data");
-                    Iterator<String> keys = data.keys();
-                    while(keys.hasNext()) {
-                        String key = keys.next();
-                        JSONObject datas = data.getJSONObject(key);
-                        ChampionDetails champion = gson.fromJson(datas.toString(), ChampionDetails.class);
-                        ChampionsDatabase.getChampionDatabseInstance(context).championsDAO().addChampion(champion);
-                        listMutableLiveDatas.setValue(champion);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-            }
-        });
+        allChampionsCall.enqueue(call);
+    }
+    public static void getListMutableLiveData(Context context,String champion) {
+        ChampionsInterface championsInterface = ChampionRetro.getAllChampionInstance().create(ChampionsInterface.class);
+        Call<ResponseBody> allChampionsCall = championsInterface.getSpecificChampion(champion);
+        allChampionsCall.enqueue(call);
     }
 }

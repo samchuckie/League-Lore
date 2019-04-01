@@ -109,7 +109,6 @@ public class Summoner {
         public Integer getSummonerLevel() {
             return summonerLevel;
         }
-
         public void setSummonerLevel(Integer summonerLevel) {
             this.summonerLevel = summonerLevel;
         }
