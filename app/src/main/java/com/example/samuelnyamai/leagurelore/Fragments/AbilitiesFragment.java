@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.samuelnyamai.leagurelore.Adapters.AbilitiesAdapter;
 import com.example.samuelnyamai.leagurelore.R;
-import com.example.samuelnyamai.leagurelore.ViewModel.AllChampionsViewModel;
 import com.example.samuelnyamai.leagurelore.ViewModel.IndividualViewModel;
 import com.example.samuelnyamai.leagurelore.data.ChampionPassive;
 import com.squareup.picasso.Picasso;
@@ -46,15 +45,24 @@ public class AbilitiesFragment extends Fragment {
         abilites_rv.setLayoutManager(linearLayoutManager);
         abilites_rv.setAdapter(abilitiesAdapter);
         individualViewModel.getListMutableLiveData().observe(this,observer-> {
-            Log.e("sam" , "The passive is " + observer.getChampionPassive().getDescription());
-            Log.e("sam" , "The spell is " + observer.getChampionSpells().get(0).getName());
-            abilitiesAdapter.setAbilities(observer.getChampionSpells());
-            updateUI(observer.getChampionPassive());
+            if(observer!=null && observer.getChampionSpells()!=null) {
+                Log.e("sam", "The passive is " + observer.getChampionPassive().getDescription());
+                Log.e("sam", "The spell is " + observer.getChampionSpells().get(0).getName());
+                abilitiesAdapter.setAbilities(observer.getChampionSpells());
+                updateUI(observer.getChampionPassive());
+            }
         });
 
             return view;
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        individualViewModel.setSavedstate("abilities");
+    }
+
 
     private void updateUI(ChampionPassive championPassive) {
         Picasso.get().load(CHAMPION_PASSIVE + championPassive.getChampionImage().getFull()).into(passive_icon);
@@ -63,3 +71,4 @@ public class AbilitiesFragment extends Fragment {
         passivename_tv.setText(championPassive.getName());
     }
 }
+// TODO USE ON FRAG INST

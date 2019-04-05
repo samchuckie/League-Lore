@@ -42,20 +42,22 @@ public class SpecificSummonerModel {
     }
 
     private static Summoner searchsummoner;
-    public static void getData(){
+    public static void getData(String username, String server){
         summonerLiveData = new MutableLiveData<>();
         searchsummoner = new Summoner();
 
         // TODO CHANGE THE SERVER CHOICE FROM MANUAL TO DYNAMIC
 
-        LoginInterface loginInterface = LeagueRetro.getLeagueInstanceServers("EUW").create(LoginInterface.class);
-        Call<Summoner> summonerCall = loginInterface.getPersonData("charliesdemon", API_KEY);
+        LoginInterface loginInterface = LeagueRetro.getLeagueInstanceServers(server).create(LoginInterface.class);
+        Call<Summoner> summonerCall = loginInterface.getPersonData(username, API_KEY);
         summonerCall.enqueue(new Callback<Summoner>() {
             @Override
             public void onResponse(Call<Summoner> call, Response<Summoner> response) {
                 Log.e("sam", "The url is " + call.request().url().toString());
-                searchsummoner=response.body();
-                getPUUD(response.body().getId());
+                    searchsummoner = response.body();
+                if (searchsummoner != null) {
+                    getPUUD(searchsummoner.getId());
+                }
             }
             @Override
             public void onFailure(Call<Summoner> call, Throwable t) {

@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.samuelnyamai.leagurelore.Adapters.TipsAdapter;
@@ -47,19 +49,25 @@ public class LoreFragment extends Fragment {
         enemies_rv.setAdapter(enemies);
         individualViewModel.getListMutableLiveData().observe(this,observer->{
 
-            if(observer.getAlltips()==null){
-                individualViewModel.callChampion("");
-
-                Log.e("sam", "Champ tips is so null");
-
-            }
-            else {
+            if(observer!=null && observer.getAlltips()!=null){
                 lore_tv.setText(observer.getLore());
                 allies.setTips(observer.getAlltips());
                 enemies.setTips(observer.getEnemytips());
-                Log.e("sam", "Champ ally is notnull");
+                individualViewModel.setvisibility("visible");
+            }
+            else {
+                individualViewModel.callChampion("");
+                Log.e("sam", "Champ tips is so null");
             }
         });
         return view;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        individualViewModel.setSavedstate("lore");
+    }
 }
+
+// TODO CHECK IF DATABINDING CAN WORK WITH VIEWMODEL VARIABLE ON PROGBBAR

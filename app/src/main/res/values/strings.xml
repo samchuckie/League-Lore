@@ -4,6 +4,7 @@
     <string name="proceed">Proceed</string>
     <string name="preference_file_key" />
     <string name="summoner_name_key">summoner_key</string>
+    <string name="summoner_server">summoner_server</string>
     <string name="log_out">Log out</string>
     <string name="username">Username:</string>
     <string name="level">Level:</string>
@@ -175,4 +176,7 @@
     <string name="enemies">Enemies</string>
     <string name="abilitie_icon">abilitie icon</string>
     <string name="passive_icon">Passive</string>
+    <string name="summoner_search">Summoner search</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

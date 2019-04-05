@@ -19,7 +19,6 @@ public class Specific_SummonerViewModel extends AndroidViewModel {
 
     public Specific_SummonerViewModel(@NonNull Application application) {
         super(application);
-        SpecificSummonerModel.getData();
     }
 
     public LiveData<Summoner> getSummonerLiveData() {
@@ -32,5 +31,9 @@ public class Specific_SummonerViewModel extends AndroidViewModel {
 
     public LiveData<List<String>> getChampionsPlayedList(Context context, List<String> champsplayed) {
         return SpecificSummonerModel.getChampionplayedList(context , champsplayed);
+    }
+    public void getData(String username,String server){
+        SpecificSummonerModel.getData(username ,server);
+
     }
 }

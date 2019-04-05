@@ -1,6 +1,5 @@
 package com.example.samuelnyamai.leagurelore;
 
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +7,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +29,7 @@ public class LogIn extends AppCompatActivity {
     SharedPreferences sharedPreferences ;
     Context context;
     String shared_preference;
+    String summoner_name ,server;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +51,23 @@ public class LogIn extends AppCompatActivity {
         proceed.setOnClickListener(clicker -> {
 
             // So I discovered that calling the getSelectedItem actually calls the onItemSelected ->parent.getSelectedItem(position).toString();
-
-        viewModel.getDetails(serverSpinner.getSelectedItem().toString(),summoner_username.getText().toString());
+        summoner_name = summoner_username.getText().toString();
+        server = serverSpinner.getSelectedItem().toString();
+        viewModel.getDetails(server, summoner_name);
         viewModel.getSummonerLiveData().observe(this ,summoneresponse ->{
-            if (summoneresponse.getName() != null)
+            if (summoneresponse != null)
             {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(getString(R.string.summoner_name_key), summoneresponse.getName() );
+                editor.putString(getString(R.string.summoner_server) ,server);
                 editor.putInt(getString(R.string.summoner_icon_key ),summoneresponse.getProfileIconId());
                 editor.putInt(getString(R.string.summoner_level_key),summoneresponse.getSummonerLevel());
                 editor.apply();
                 startActivity(new Intent(this ,Champions.class));
+            }
+            else{
+                Toast.makeText(this ,"Sorry the summoner " + summoner_name +
+                        " does not exist in " + server + " server" ,Toast.LENGTH_LONG ).show();
             }
         });
     });

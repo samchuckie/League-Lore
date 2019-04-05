@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -70,6 +71,8 @@ public class AltChampionModel {
         @Override
         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
             Log.e("sam","The url call is " + call.request().url());
+
+
             try {
                 JSONObject jsonObject = new JSONObject(response.body().string());
                 JSONObject data = jsonObject.getJSONObject("data");

@@ -23,7 +23,7 @@ public class TipsAdapter  extends RecyclerView.Adapter<TipsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TipsAdapter.ViewHolder viewHolder, int i) {
-        String tip = String.valueOf(i) + ". " +alltips.get(i);
+        String tip = String.valueOf(i+1) + ". " +alltips.get(i);
         viewHolder.tips_tv.setText(tip);
     }
 

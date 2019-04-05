@@ -1,6 +1,7 @@
 package com.example.samuelnyamai.leagurelore;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
@@ -50,6 +51,8 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHA
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.JPG_IMAGE_EXTENSION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PNG_IMAGE_EXTENSION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PROFILE_BASE_URL;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.SERVER_EXTRA;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.USERNAME_EXTRA;
 
 public class SummonerActivity extends AppCompatActivity {
     // TODO EXTRACT THE NAME AND LEVEL TO A SEPARATE FILE AND INCLUDE THEM IN BOTH LAYOUT
@@ -83,7 +86,14 @@ public class SummonerActivity extends AppCompatActivity {
         championsplayed_rv.setLayoutManager(layoutManager);
         championPLayedAdapter= new ChampionPLayedAdapter();
         championsplayed_rv.setAdapter(championPLayedAdapter);
-        viewModeler.getSummonerLiveData().observe(this, this::updateUi);
+        Intent intent = getIntent();
+        if (intent.hasExtra(USERNAME_EXTRA) && intent.hasExtra(SERVER_EXTRA)){
+            String username = intent.getStringExtra(USERNAME_EXTRA);
+            String server = intent.getStringExtra(SERVER_EXTRA);
+            viewModeler.getData(username ,server);
+            viewModeler.getSummonerLiveData().observe(this, this::updateUi);
+        }
+
     }
 
     private void updateUi(Summoner summoner) {

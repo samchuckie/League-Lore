@@ -10,11 +10,18 @@
     android:elevation="6dp"
     tools:background="@android:color/black"
     >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:id="@+id/lorelinear"
         >
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,11 +58,9 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/enemies_rv"
-            >
-
-        </android.support.v7.widget.RecyclerView>
+            android:id="@+id/enemies_rv"/>
 
     </LinearLayout>
 
+    </FrameLayout>
 </android.support.v4.widget.NestedScrollView>

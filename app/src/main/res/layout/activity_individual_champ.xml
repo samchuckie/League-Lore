@@ -37,14 +37,29 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/individual_frame"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_marginBottom="56dp"
-        />
+        >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/individual_frame"
+            android:visibility="invisible"
+            />
+        <ProgressBar
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="120dp"
+            android:id="@+id/progress_bar"
+
+            />
+
+    </FrameLayout>
+
+
 
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"

@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;import android.support.v7.widget.LinearLayoutManager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +26,7 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.NAM
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.TITLE_EXTRA;
 
 // TODO SIDE PROJECT FOR MOVIEDB CHANGE THE WHOLE THING. FOR ACTORS USE DIALOG AS WITH CHAMPIONS HERE
+// TODO SIDE PROJECT STILL USE A CONTEXT MENU FOR DELETING TO PREVENT DELETE_FRAG FROM CRASHING DUE TO LOST ACTIVITY
 
 public class ChampionFragment extends Fragment implements ChampionAdapter.ItemClickedInterface {
     AllChampionsViewModel allChampionsViewModel;
@@ -40,22 +41,27 @@ public class ChampionFragment extends Fragment implements ChampionAdapter.ItemCl
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.champion_fragment,container ,false);
         RecyclerView recyclerView = view.findViewById(R.id.champion_rv);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext() ,2);
+        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(gridLayoutManager);
         ChampionAdapter championAdapter = new ChampionAdapter(this);
         recyclerView.setAdapter(championAdapter);
 
         // Lambda replaced with method expression
 
-        // TODO MAKE CALL TO AllChampAsync
+
+        // TODO ADD TAGS TO A SET TO SEE ALL THE TAGS AVAILABLE
+
         allChampionsViewModel.getChampionList().observe(this, championDetails -> {
-                    if (championDetails.size()!=0){
+                    if (championDetails != null){
                         for (ChampionDetails champ:championDetails) {
-                           // Log.e("sam", "championdetail is " + champ.getName());
                             championAdapter.addChampion(champ);
                         }
                     }
                     else {
+
+                        //  TODO CHECK IF THERE IS INTERNET. THIS IS AFTER DATABASE IS NULL
+
                             allChampionsViewModel.getListMutableLiveData();
 
                         }
@@ -74,3 +80,5 @@ public class ChampionFragment extends Fragment implements ChampionAdapter.ItemCl
         startActivity(indivial_champ);
     }
 }
+
+// TODO CHECK CHAMP ONCREATE REUSE FRAG

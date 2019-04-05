@@ -14,22 +14,25 @@ public class IndividualViewModel extends AndroidViewModel {
     private AltChampionModel altChampionModels;
     private String key;
     private String name;
-
-    public String getKey() {
-        return key;
+    private String savedstate ;
+    private MutableLiveData<String> visiblelive  = new MutableLiveData<>();
+    public void setvisibility(String visible) {
+        visiblelive.setValue(visible);
+    }
+    public MutableLiveData<String> getVisible() {
+        return visiblelive;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getSavedstate() {return savedstate;}
+    public void setSavedstate(String savedstate) {this.savedstate = savedstate;}
+
+    public String getKey() {return key;}
+    public void setKey(String key) {this.key = key;}
+
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
 
     public IndividualViewModel(@NonNull Application application) {
         super(application);

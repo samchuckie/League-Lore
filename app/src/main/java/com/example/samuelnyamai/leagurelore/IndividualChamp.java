@@ -4,23 +4,20 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.transition.TransitionManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.example.samuelnyamai.leagurelore.Fragments.AbilitiesFragment;
 import com.example.samuelnyamai.leagurelore.Fragments.LoreFragment;
-import com.example.samuelnyamai.leagurelore.ViewModel.AllChampionsViewModel;
 import com.example.samuelnyamai.leagurelore.ViewModel.IndividualViewModel;
-import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
 import com.squareup.picasso.Picasso;
-
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_ICON_BASE_URL;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_LOADINGIMAGE_URL;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.ID_EXTRA;
@@ -41,6 +38,14 @@ public class IndividualChamp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_champ);
         individualViewModel = ViewModelProviders.of(this).get(IndividualViewModel.class);
+        individualViewModel.getVisible().observe(this , visiblestate ->{
+            if(visiblestate!=null && visiblestate.equals("visible")){
+                ProgressBar progress_bar =  findViewById(R.id.progress_bar);
+                FrameLayout individual_frame = findViewById(R.id.individual_frame);
+                progress_bar.setVisibility(View.GONE);
+                individual_frame.setVisibility(View.VISIBLE);
+            }
+        });
 
         summoner_backdrop_iv = findViewById(R.id.summoner_backdrop_iv);
         summoner_currenticon_iv = findViewById(R.id.summoner_currenticon_iv);
@@ -57,22 +62,40 @@ public class IndividualChamp extends AppCompatActivity {
             id = intent.getStringExtra(ID_EXTRA);
             image = intent.getStringExtra(IMAGE_EXTRA);
             individualViewModel.setKey(key);
-            individualViewModel.setName(name);
+            individualViewModel.setName(id);
             updateUI();
         }
-
         LoreFragment loreFragment = new LoreFragment();
+        AbilitiesFragment abilitiesFragment = new AbilitiesFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.individual_frame, loreFragment).commit();
+        if (individualViewModel.getSavedstate()==null){
+            fragmentManager.beginTransaction().add(R.id.individual_frame, loreFragment).commit();
+        }
+        else {
+            switch(individualViewModel.getSavedstate()){
+                case "lore":
+                    fragmentManager.beginTransaction().replace(R.id.individual_frame, loreFragment).commit();
+                    break;
+                case "abilities":
+                    fragmentManager.beginTransaction().replace(R.id.individual_frame, abilitiesFragment).commit();
+                    break;
+
+
+            }
+        }
 
         BottomNavigationView bottom_nav = findViewById(R.id.bottom_nav);
         bottom_nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Log.e("sam", "Selected item is " + bottom_nav.getSelectedItemId());
-                Log.e("sam", "Selected item is " + menuItem.getTitle());
-                AbilitiesFragment abilitiesFragment = new AbilitiesFragment();
-                fragmentManager.beginTransaction().replace(R.id.individual_frame, abilitiesFragment).commit();
+                switch (menuItem.getItemId()){
+                    case R.id.home:
+                        fragmentManager.beginTransaction().replace(R.id.individual_frame, loreFragment).commit();
+                        break;
+                    case R.id.abilities:
+                        fragmentManager.beginTransaction().replace(R.id.individual_frame, abilitiesFragment).commit();
+                        break;
+                }
                 return true;
             }
         });
