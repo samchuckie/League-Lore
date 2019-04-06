@@ -7,10 +7,10 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_dark"
     android:layout_gravity="bottom"
-    android:paddingStart="16dp"
-    android:paddingLeft="16dp"
+    android:paddingStart="@dimen/sixteen_dp"
+    android:paddingLeft="@dimen/sixteen_dp"
     android:paddingTop="62dp"
-    >
+    tools:ignore="RtlSymmetry">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,9 +22,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:layout_marginTop="@dimen/sixteen_dp"
     >
     <TextView
-        android:layout_width="@dimen/first_child_width"
+        android:layout_width="wrap_content"
         android:text="@string/username"
         style="@style/drawer_linear"
         />
@@ -40,10 +41,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/margin_drawer_lineartop"
-        android:paddingBottom="@dimen/first_child_width"
         >
         <TextView
-            android:layout_width="@dimen/first_child_width"
+            android:layout_width="wrap_content"
             android:text="@string/level"
             style="@style/drawer_linear"
 
@@ -54,5 +54,23 @@
             style="@style/drawer_linear.child"
             />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_drawer_lineartop"
+        android:paddingBottom="@dimen/first_child_width"
+        >
 
+        <TextView
+            style="@style/drawer_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/server" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/server_tv"
+            style="@style/drawer_linear.child"
+            />
+    </LinearLayout>
 </LinearLayout>

@@ -5,6 +5,7 @@
     <string name="preference_file_key" />
     <string name="summoner_name_key">summoner_key</string>
     <string name="summoner_server">summoner_server</string>
+    <string name="server">Server</string>
     <string name="log_out">Log out</string>
     <string name="username">Username:</string>
     <string name="level">Level:</string>

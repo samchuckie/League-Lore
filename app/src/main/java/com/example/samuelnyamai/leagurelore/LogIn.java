@@ -7,9 +7,11 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -50,26 +52,29 @@ public class LogIn extends AppCompatActivity {
         serverSpinner.setAdapter(serverArrayAdapter);
         proceed.setOnClickListener(clicker -> {
 
-            // So I discovered that calling the getSelectedItem actually calls the onItemSelected ->parent.getSelectedItem(position).toString();
-        summoner_name = summoner_username.getText().toString();
-        server = serverSpinner.getSelectedItem().toString();
-        viewModel.getDetails(server, summoner_name);
-        viewModel.getSummonerLiveData().observe(this ,summoneresponse ->{
-            if (summoneresponse != null)
-            {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(getString(R.string.summoner_name_key), summoneresponse.getName() );
-                editor.putString(getString(R.string.summoner_server) ,server);
-                editor.putInt(getString(R.string.summoner_icon_key ),summoneresponse.getProfileIconId());
-                editor.putInt(getString(R.string.summoner_level_key),summoneresponse.getSummonerLevel());
-                editor.apply();
-                startActivity(new Intent(this ,Champions.class));
+                // So I discovered that calling the getSelectedItem actually calls the onItemSelected ->parent.getSelectedItem(position).toString();
+            summoner_name = summoner_username.getText().toString();
+            server = serverSpinner.getSelectedItem().toString();
+            if (!summoner_name.isEmpty()) {
+                ProgressBar login_progress = findViewById(R.id.login_progress);
+                login_progress.setVisibility(View.VISIBLE);
+                viewModel.getDetails(server, summoner_name);
+                viewModel.getSummonerLiveData().observe(this, summoneresponse -> {
+                    if (summoneresponse != null) {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(getString(R.string.summoner_name_key), summoneresponse.getName());
+                        editor.putString(getString(R.string.summoner_server), server);
+                        editor.putInt(getString(R.string.summoner_icon_key), summoneresponse.getProfileIconId());
+                        editor.putInt(getString(R.string.summoner_level_key), summoneresponse.getSummonerLevel());
+                        editor.apply();
+                        startActivity(new Intent(this, Champions.class));
+                    } else {
+                        Toast.makeText(this, "Sorry the summoner " + summoner_name +
+                                " does not exist in " + server + " server", Toast.LENGTH_LONG).show();
+                    }
+                });
+                login_progress.setVisibility(View.GONE);
             }
-            else{
-                Toast.makeText(this ,"Sorry the summoner " + summoner_name +
-                        " does not exist in " + server + " server" ,Toast.LENGTH_LONG ).show();
-            }
-        });
     });
 }
 }

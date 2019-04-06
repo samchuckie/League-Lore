@@ -24,6 +24,7 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.SER
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.USERNAME_EXTRA;
 
 public class Champions extends AppCompatActivity {
+    // TODO ADD SHARED ANIMATIONS
     // TODO CAN DATABINDING BE USED WITH NAV_DRAWER
     // TODO BACK ACTIVITY SHOULD EXIT THE APP NOT GO TO LOG IN
     // TODO PREFERENCE FRAGMENT FOR LANGUAGE
@@ -48,6 +49,7 @@ public class Champions extends AppCompatActivity {
         league_navigationview = findViewById(R.id.league_nav_view);
         TextView username_tv = league_navigationview.getHeaderView(0).findViewById(R.id.username);
         TextView level_tv = league_navigationview.getHeaderView(0).findViewById(R.id.level);
+        TextView server_tv = league_navigationview.getHeaderView(0).findViewById(R.id.server_tv);
         ImageView usericon_iv = league_navigationview.getHeaderView(0).findViewById(R.id.user_icon);
         if (sharedPreferences.contains(getString(R.string.summoner_name_key))) {
             username_pref = sharedPreferences.getString(getString(R.string.summoner_name_key), null);
@@ -55,6 +57,7 @@ public class Champions extends AppCompatActivity {
             int user_level = sharedPreferences.getInt(getString(R.string.summoner_level_key), 0);
             int user_icon = sharedPreferences.getInt(getString(R.string.summoner_icon_key), 0);
             username_tv.setText(username_pref);
+            server_tv.setText(server_pref);
             level_tv.setText(String.valueOf(user_level));
             Picasso.get().load(PROFILE_BASE_URL + user_icon + PNG_IMAGE_EXTENSION).noFade().into(usericon_iv);
         }
@@ -92,10 +95,6 @@ public class Champions extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

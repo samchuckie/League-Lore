@@ -24,12 +24,8 @@ public class SummonerViewModel extends AndroidViewModel {
         this.username =username;
     }
     public LiveData<Summoner> getSummonerLiveData(){
-        if (summonerLiveData==null)
-        {
-            summonerLiveData= SummonerModel.getLogininstance(server,username);
-            Log.e("sam", "Livedata is null");
-        }
-
+        summonerLiveData= SummonerModel.getLogininstance(server,username);
+        Log.e("sam", "Livedata is null");
         return summonerLiveData;
     }
 }
