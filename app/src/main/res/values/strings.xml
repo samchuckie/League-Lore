@@ -180,4 +180,5 @@
     <string name="summoner_search">Summoner search</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="n_a">N/A</string>
 </resources>

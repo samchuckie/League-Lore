@@ -2,51 +2,27 @@ package com.example.samuelnyamai.leagurelore;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.samuelnyamai.leagurelore.Adapters.ChampionPLayedAdapter;
-import com.example.samuelnyamai.leagurelore.Model.SpecificSummonerModel;
-import com.example.samuelnyamai.leagurelore.Network.RetroClasses.ChampionsPlayedRetro;
-import com.example.samuelnyamai.leagurelore.Network.RetroClasses.LeagueRetro;
-import com.example.samuelnyamai.leagurelore.Network.RetroClasses.RankedRetro;
-import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.ChampioMasteryInt;
-import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.LoginInterface;
-import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.RankedInterface;
-import com.example.samuelnyamai.leagurelore.Room.ChampionsDatabase;
 import com.example.samuelnyamai.leagurelore.ViewModel.Specific_SummonerViewModel;
-import com.example.samuelnyamai.leagurelore.ViewModel.SummonerViewModel;
 import com.example.samuelnyamai.leagurelore.data.ChampionsPlayed;
 import com.example.samuelnyamai.leagurelore.data.Summoner;
 import com.example.samuelnyamai.leagurelore.data.SummonerRankedInfo;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.API_KEY;
-import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_ICON_BASE_URL;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_LOADINGIMAGE_URL;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.JPG_IMAGE_EXTENSION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PNG_IMAGE_EXTENSION;
@@ -57,7 +33,7 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.USE
 public class SummonerActivity extends AppCompatActivity {
     // TODO EXTRACT THE NAME AND LEVEL TO A SEPARATE FILE AND INCLUDE THEM IN BOTH LAYOUT
     // TODO ADD A FAB FOR HISTORY
-    // TODO ADD PROGRESSBAR
+    // TODO IMPLIMENT INTERFACE FOR ERROR
 
     TextView s_name,s_level,sr_name,fr_name,sr_points,fr_points ,leaguepointssolo_tv ,leaguepointsflex_tv;
     ImageView summoner_backdrop_iv, summoner_currenticon_iv,soloranked_iv,flexranked_iv;
@@ -91,7 +67,18 @@ public class SummonerActivity extends AppCompatActivity {
             String username = intent.getStringExtra(USERNAME_EXTRA);
             String server = intent.getStringExtra(SERVER_EXTRA);
             viewModeler.getData(username ,server);
-            viewModeler.getSummonerLiveData().observe(this, this::updateUi);
+            viewModeler.getSummonerLiveData().observe(this, summoner ->{
+                ProgressBar summoner_progress = findViewById(R.id.summoner_progress);
+                summoner_progress.setVisibility(View.GONE);
+                if(summoner!=null) {
+                    FrameLayout summoner_frame = findViewById(R.id.summoner_frame);
+                    summoner_frame.setVisibility(View.VISIBLE);
+                    updateUi(summoner);
+                }
+                else{
+                    Toast.makeText(this ,"Sorry ,summoner not found" ,Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
     }
@@ -111,31 +98,43 @@ public class SummonerActivity extends AppCompatActivity {
         viewModeler.getChampionsPlayedList(this,champidList).observe(this,observer->{
             championPLayedAdapter.setChampionsPlayedlist(observer);
         });
-        rankedUI(summoner);
-        flexUI(summoner);
+        if(summoner.getSummonerRankedInfoList().size()==0){
+            LinearLayout unranked = findViewById(R.id.unranked);
+            unranked.setVisibility(View.VISIBLE);
+        }
+        for(SummonerRankedInfo summonerRankedInfo:summoner.getSummonerRankedInfoList()){
+            if(summonerRankedInfo.getQueueType().equals("RANKED_FLEX_SR")){
+                flexUI(summonerRankedInfo);
+            }
+            else {
+                rankedUI(summonerRankedInfo);
+            }
+        }
     }
-
-    private void rankedUI(Summoner summoner) {
-        String solo = summoner.getSummonerRankedInfoList().get(0).getTier();
-        String solo_points = solo + " " + String.valueOf(summoner.getSummonerRankedInfoList().get(0).getRank()) ;
-        sr_name.setText(summoner.getSummonerRankedInfoList().get(0).getLeagueName());
-        String all = String.valueOf(summoner.getSummonerRankedInfoList().get(0).getLeaguePoints())+ " LP" + "  /"
-                + String.valueOf(summoner.getSummonerRankedInfoList().get(0).getWins()) + "W " +
-                String.valueOf(summoner.getSummonerRankedInfoList().get(0).getLosses()) + "L";
+    private void rankedUI(SummonerRankedInfo summonerRankedInfo) {
+        LinearLayout rankedsolo_linear = findViewById(R.id.rankedsolo_linear);
+        rankedsolo_linear.setVisibility(View.VISIBLE);
+        String solo = summonerRankedInfo.getTier();
+        String solo_points = solo + " " + String.valueOf(summonerRankedInfo.getRank()) ;
+        sr_name.setText(summonerRankedInfo.getLeagueName());
+        String all = String.valueOf(summonerRankedInfo.getLeaguePoints())+ " LP" + "  /"
+                + String.valueOf(summonerRankedInfo.getWins()) + "W " +
+                String.valueOf(summonerRankedInfo.getLosses()) + "L";
         sr_points.setText(solo_points);
         leaguepointssolo_tv.setText(all);
-
         getDrawable(solo,soloranked_iv);
 
     }
-    private void flexUI(Summoner summoner) {
-        String flex = summoner.getSummonerRankedInfoList().get(1).getTier();
-        String flex_points = flex + " " + String.valueOf(summoner.getSummonerRankedInfoList().get(1).getRank()) ;
-        fr_name.setText(summoner.getSummonerRankedInfoList().get(1).getLeagueName());
+    private void flexUI(SummonerRankedInfo summonerRankedInfo) {
+        LinearLayout rankedflex_linear = findViewById(R.id.rankedflex_linear);
+        rankedflex_linear.setVisibility(View.VISIBLE);
+        String flex = summonerRankedInfo.getTier();
+        String flex_points = flex + " " + String.valueOf(summonerRankedInfo.getRank()) ;
+        fr_name.setText(summonerRankedInfo.getLeagueName());
         fr_points.setText(flex_points);
-        String all = String.valueOf(summoner.getSummonerRankedInfoList().get(1).getLeaguePoints())+ " LP" + "  /"
-                        + String.valueOf(summoner.getSummonerRankedInfoList().get(1).getWins()) + "W " +
-                        String.valueOf(summoner.getSummonerRankedInfoList().get(1).getLosses()) + "L";
+        String all = String.valueOf(summonerRankedInfo.getLeaguePoints())+ " LP" + "  /"
+                        + String.valueOf(summonerRankedInfo.getWins()) + "W " +
+                        String.valueOf(summonerRankedInfo.getLosses()) + "L";
         leaguepointsflex_tv.setText(all);
         getDrawable(flex,flexranked_iv);
     }
@@ -143,31 +142,31 @@ public class SummonerActivity extends AppCompatActivity {
     private void getDrawable(String tier,ImageView ranked_type) {
         switch (tier) {
             case ("IRON"):
-                Picasso.get().load(R.drawable.silver).into(ranked_type);
+                Picasso.get().load(R.drawable.iron).placeholder(R.drawable.unranked).into(ranked_type);
                 break;
             case ("BRONZE"):
-                Picasso.get().load(R.drawable.bronze).into(ranked_type);
+                Picasso.get().load(R.drawable.bronze).placeholder(R.drawable.unranked).into(ranked_type);
                 break;
             case ("SILVER"):
-                Picasso.get().load(R.drawable.silver).into(ranked_type);
+                Picasso.get().load(R.drawable.silver).placeholder(R.drawable.unranked).into(ranked_type);
                 break;
             case ("GOLD"):
-                Picasso.get().load(R.drawable.bronze).into(ranked_type);
+                Picasso.get().load(R.drawable.gold).placeholder(R.drawable.unranked).into(ranked_type);
                 break;
             case ("PLATINUM "):
-                Picasso.get().load(R.drawable.silver).into(ranked_type);
+                Picasso.get().load(R.drawable.platinum).placeholder(R.drawable.unranked).into(ranked_type);
                 break;
             case ("DIAMOND"):
-                Picasso.get().load(R.drawable.bronze).into(ranked_type);
+                Picasso.get().load(R.drawable.diamond).placeholder(R.drawable.unranked).into(ranked_type);
                 break;
             case ("MASTER"):
-                Picasso.get().load(R.drawable.silver).into(ranked_type);
+                Picasso.get().load(R.drawable.master).placeholder(R.drawable.unranked).into(ranked_type);
                 break;
             case ("GRANDMASTER"):
-                Picasso.get().load(R.drawable.bronze).into(ranked_type);
+                Picasso.get().load(R.drawable.grandmaster).placeholder(R.drawable.unranked).into(ranked_type);
                 break;
             case ("CHALLENGER"):
-                Picasso.get().load(R.drawable.silver).into(ranked_type);
+                Picasso.get().load(R.drawable.challenger).placeholder(R.drawable.unranked).into(ranked_type);
                 break;
         }
     }

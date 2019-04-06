@@ -56,7 +56,7 @@ public class SpecificSummonerModel {
                 Log.e("sam", "The url is " + call.request().url().toString());
                     searchsummoner = response.body();
                 if (searchsummoner != null) {
-                    getPUUD(searchsummoner.getId());
+                    getPUUD(searchsummoner.getId(),server);
                 }
             }
             @Override
@@ -65,9 +65,9 @@ public class SpecificSummonerModel {
             }
         });
     }
-    private static void getPUUD(String puuid) {
-        RankedInterface rankedInterface = RankedRetro.getRankedInfoInstance().create(RankedInterface.class);
-        ChampioMasteryInt championsInterface = ChampionsPlayedRetro.getAllChampionMasteryInstance().create(ChampioMasteryInt.class);
+    private static void getPUUD(String puuid,String server) {
+        RankedInterface rankedInterface = RankedRetro.getRankedInfoInstance(server).create(RankedInterface.class);
+        ChampioMasteryInt championsInterface = ChampionsPlayedRetro.getAllChampionMasteryInstance(server).create(ChampioMasteryInt.class);
         Observable<List<SummonerRankedInfo>> listCall = rankedInterface.
                 getsummoneranked(puuid,
                         API_KEY)
@@ -84,8 +84,12 @@ public class SpecificSummonerModel {
                 new BiFunction<List<SummonerRankedInfo>, List<ChampionsPlayed>, Summoner>() {
             @Override
             public Summoner apply(List<SummonerRankedInfo> summonerRankedInfos, List<ChampionsPlayed> championsPlayeds) throws Exception {
-                Log.e("sam", "The champion id is " + summonerRankedInfos.get(0).getLeagueName());
-                searchsummoner.setSummonerRankedInfoList(summonerRankedInfos);
+                if (summonerRankedInfos != null){
+                    searchsummoner.setSummonerRankedInfoList(summonerRankedInfos);
+                }
+                else {
+                    searchsummoner.setSummonerRankedInfoList(null);
+                }
                 searchsummoner.setChampionsPlayedList(championsPlayeds);
                 return searchsummoner;
             }
@@ -96,6 +100,7 @@ public class SpecificSummonerModel {
             @Override
             public void onNext(Summoner summoner) {
                 summonerLiveData.setValue(summoner);
+                Log.e("sam" , "The summoner name is " + summoner.getName());
             }
             @Override
             public void onError(Throwable throwable) { }

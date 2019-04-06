@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/black"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black_background_text"
     >
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/a"
         android:id="@+id/summoner_backdrop_iv"
-        />
+        android:contentDescription="@string/icon_content_description"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="@dimen/icon_dim"
         android:layout_height="@dimen/icon_dim"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="@dimen/eight_dp"
         android:layout_marginTop="172dp"
         android:background="@drawable/alistar"
-        app:civ_border_width="4dp"
-        app:civ_border_color="#FF000000"
+        app:civ_border_width="@dimen/four_dp"
+        app:civ_border_color="@color/black_background_text"
         android:id="@+id/summoner_currenticon_iv"
-        android:layout_marginStart="8dp" />
+        android:layout_marginStart="@dimen/eight_dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="176dp"
-        android:textSize="16dp"
+        android:textSize="@dimen/textsize_sixteen"
         tools:text="Charliesdemon"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:gravity="center"
         android:id="@+id/summonername_tv"
         android:layout_marginStart="80dp" />
@@ -46,16 +46,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="@dimen/textsize_sixteen"
             android:text="@string/level"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:gravity="center"
             android:id="@+id/level_tv"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="@dimen/textsize_sixteen"
             tools:text="126"
             android:textColor="@android:color/white"
             android:gravity="center"

@@ -3,15 +3,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".SummonerActivity"
-        android:background="@android:color/black"
+        android:background="@color/black_background_text"
 
     >
     <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/summoner_frame"
+        android:visibility="invisible"
+        tools:visibility="visible"
         >
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,13 +31,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/champions"
-            android:textColor="@android:color/white"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" />
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/eight_dp"
+            android:layout_marginStart="@dimen/eight_dp" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/white"/>
+            android:background="@color/white"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -46,19 +52,23 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/white"/>
+            android:background="@color/white"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:orientation="horizontal"
+            android:id="@+id/rankedsolo_linear"
+            android:visibility="gone"
+            tools:visibility="visible"
+
 
             >
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:background="@drawable/bronze"
+                tools:background="@drawable/unranked"
                 android:contentDescription="@string/ranked_solo_emblem"
                 android:id="@+id/soloranked_iv"
                 />
@@ -67,21 +77,21 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingTop="16dp"
+                android:paddingTop="@dimen/sixteen_dp"
                 >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Ezreal Guardians"
-                    android:textColor="@android:color/white"
-                    android:layout_marginTop="16dp"
+                    android:text="@string/n_a"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/sixteen_dp"
                     android:id="@+id/soloranked_tv"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:text="Silver 1"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:text="@string/n_a"
                     android:textColor="@android:color/white"
                     android:id="@+id/solorankedpoint_tv"
                     />
@@ -89,13 +99,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    tools:text="League Points:"
-                    android:textColor="@android:color/white"
+                    android:text="@string/n_a"
+                    android:textColor="@color/white"
                     android:id="@+id/leaguepointssolo_tv"
                     />
-
-
-
             </LinearLayout>
 
         </LinearLayout>
@@ -104,53 +111,113 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:orientation="horizontal"
+            android:id="@+id/rankedflex_linear"
+            android:visibility="gone"
+            tools:visibility="visible"
             >
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:background="@drawable/silver"
+                tools:background="@drawable/unranked"
                 android:id="@+id/flexranked_iv"
+                android:contentDescription="@string/ranked_solo_emblem"
                 />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingTop="16dp"
+                android:paddingTop="@dimen/sixteen_dp"
                 >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Rammus Ninja"
-                    android:layout_marginTop="16dp"
-                    android:textColor="@android:color/white"
+                    android:text="@string/n_a"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:textColor="@color/white"
                     android:id="@+id/flexranked_tv"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Silver 1"
-                    android:layout_marginTop="16dp"
+                    android:text="@string/n_a"
+                    android:layout_marginTop="@dimen/sixteen_dp"
                     android:textColor="@android:color/white"
                     android:id="@+id/flexrankedpoints_tv"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:text="League Points:"
-                    android:textColor="@android:color/white"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:text="@string/n_a"
+                    android:textColor="@color/white"
                     android:id="@+id/leaguepointsflex_tv"
                     />
             </LinearLayout>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="horizontal"
+            android:id="@+id/unranked"
+            android:visibility="gone"
+            tools:visibility="visible"
 
+
+            >
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/unranked"
+                android:contentDescription="@string/ranked_solo_emblem"
+                />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/sixteen_dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/n_a"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:text="@string/n_a"
+                    android:textColor="@android:color/white"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/n_a"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
- <include layout="@layout/header_file">
 
- </include>
+         <include layout="@layout/header_file">
+
+         </include>
         </FrameLayout>
-    </ScrollView>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/summoner_progress"
+            tools:visibility="invisible"
+            />
+    </FrameLayout>
+</ScrollView>
