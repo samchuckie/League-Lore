@@ -2,25 +2,17 @@ package com.example.samuelnyamai.leagurelore.Model;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.Log;
-
 import com.example.samuelnyamai.leagurelore.Network.RetroClasses.ChampionRetro;
 import com.example.samuelnyamai.leagurelore.Network.RetroInterfaces.ChampionsInterface;
 import com.example.samuelnyamai.leagurelore.Room.ChampionsDatabase;
 import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
 import com.google.gson.Gson;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +26,6 @@ public class AltChampionModel {
     public AltChampionModel(Context context) {
         this.context = context;
     }
-    public MutableLiveData<ChampionDetails> getIndividualLivedata() {return individualLivedata;}
     public MutableLiveData<ChampionDetails> getListMutableLiveDatas() {return listMutableLiveDatas;}
     public LiveData<ChampionDetails> getchampsInstance(Context context,String key) {
         return ChampionsDatabase.getChampionDatabseInstance(context).championsDAO().getSpecificChampions(key);

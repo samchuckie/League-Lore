@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,9 +42,9 @@ public class IndividualChamp extends AppCompatActivity {
         individualViewModel.getVisible().observe(this , visiblestate ->{
             if(visiblestate!=null && visiblestate.equals("visible")){
                 ProgressBar progress_bar =  findViewById(R.id.progress_bar);
-                FrameLayout individual_frame = findViewById(R.id.individual_frame);
+                CardView carder = findViewById(R.id.carder);
                 progress_bar.setVisibility(View.GONE);
-                individual_frame.setVisibility(View.VISIBLE);
+                carder.setVisibility(View.VISIBLE);
             }
         });
 
@@ -79,7 +80,6 @@ public class IndividualChamp extends AppCompatActivity {
                 case "abilities":
                     fragmentManager.beginTransaction().replace(R.id.individual_frame, abilitiesFragment).commit();
                     break;
-
 
             }
         }

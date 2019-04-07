@@ -2,20 +2,16 @@ package com.example.samuelnyamai.leagurelore.Adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.samuelnyamai.leagurelore.R;
 import com.example.samuelnyamai.leagurelore.data.ChampionSpells;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_SPELL;
 
 public class AbilitiesAdapter extends RecyclerView.Adapter<AbilitiesAdapter.ViewHolder> {
@@ -45,10 +41,10 @@ public class AbilitiesAdapter extends RecyclerView.Adapter<AbilitiesAdapter.View
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView abilityname_tv,abilitydesc_tv;
-        ImageView ability_icon;
-        public ViewHolder(@NonNull View itemView) {
+    class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView abilityname_tv,abilitydesc_tv;
+        private ImageView ability_icon;
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             ability_icon =itemView.findViewById(R.id.ability_icon);
             abilityname_tv =itemView.findViewById(R.id.abilityname_tv);

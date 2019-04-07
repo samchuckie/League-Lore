@@ -92,7 +92,7 @@ public class ChampionDetails {
     public void setTitle(String title) {this.title = title;}
 
     @SerializedName("allytips")
-    List<String >alltips ;
+    private List<String >alltips ;
     public List<String> getAlltips() {
         return alltips;
     }
@@ -101,7 +101,7 @@ public class ChampionDetails {
     }
 
     @SerializedName("enemytips")
-    List<String >enemytips ;
+    private List<String >enemytips ;
     public List<String> getEnemytips() {
         return enemytips;
     }

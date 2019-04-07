@@ -1,5 +1,6 @@
 package com.example.samuelnyamai.leagurelore;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -16,7 +18,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.samuelnyamai.leagurelore.Fragments.ChampionFragment;
+import com.example.samuelnyamai.leagurelore.ViewModel.SummonerViewModel;
 import com.squareup.picasso.Picasso;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PNG_IMAGE_EXTENSION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PROFILE_BASE_URL;
@@ -29,7 +34,7 @@ public class Champions extends AppCompatActivity {
     // TODO BACK ACTIVITY SHOULD EXIT THE APP NOT GO TO LOG IN
     // TODO PREFERENCE FRAGMENT FOR LANGUAGE
     //  TODO ADD CHALLENGER TIER FOR THE NAVIGATION OPTIONS
-
+    SummonerViewModel summonerViewModel;
     SharedPreferences sharedPreferences;
     NavigationView league_navigationview;
     DrawerLayout drawerLayout;
@@ -39,6 +44,7 @@ public class Champions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champions);
+        summonerViewModel = ViewModelProviders.of(this).get(SummonerViewModel.class);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
@@ -96,11 +102,43 @@ public class Champions extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.league_menu, menu);
-//        return  true;
-//
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.league_menu, menu);
+        return  true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem summoner_search =  menu.findItem(R.id.summoner_search);
+        SearchView searchView = (SearchView) summoner_search.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.e("sam" , "The submitted text is " + query);
+                summonerViewModel.getDetails(server_pref,query);
+                summonerViewModel.getSummonerLiveData().observe(Champions.this ,summoneresponse -> {
+                    if (summoneresponse != null) {
+                        Intent intent = new Intent(Champions.this, SummonerActivity.class);
+                        intent.putExtra(USERNAME_EXTRA ,summoneresponse.getName());
+                        intent.putExtra(SERVER_EXTRA ,server_pref);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(Champions.this, "Sorry the summoner " + query +
+                                " does not exist in " + server_pref + " server", Toast.LENGTH_LONG).show();
+                    }
+
+                });
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.e("sam" , "The changed text is " + newText);
+                return false;
+            }
+        });
+        return super.onPrepareOptionsMenu(menu);
+    }
 }

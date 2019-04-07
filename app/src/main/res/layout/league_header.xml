@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
+    android:background="#163668"
     android:layout_gravity="bottom"
     android:paddingStart="@dimen/sixteen_dp"
     android:paddingLeft="@dimen/sixteen_dp"

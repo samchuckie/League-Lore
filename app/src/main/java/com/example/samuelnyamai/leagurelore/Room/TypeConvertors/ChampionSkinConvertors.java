@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ChampionSkinConvertors {
-     static Gson gson = new Gson();
+     private static Gson gson = new Gson();
     @TypeConverter
     public static List<ChampionSkin> stringToSomeObjectList(String data) {
         if (data == null) {

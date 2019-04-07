@@ -1,5 +1,6 @@
 package com.example.samuelnyamai.leagurelore.Fragments;
 
+import android.app.ActivityOptions;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;import android.support.v7.widget.LinearLayoutManager;
 
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +31,7 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.TIT
 // TODO SIDE PROJECT STILL USE A CONTEXT MENU FOR DELETING TO PREVENT DELETE_FRAG FROM CRASHING DUE TO LOST ACTIVITY
 
 public class ChampionFragment extends Fragment implements ChampionAdapter.ItemClickedInterface {
-    AllChampionsViewModel allChampionsViewModel;
+    private AllChampionsViewModel allChampionsViewModel;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

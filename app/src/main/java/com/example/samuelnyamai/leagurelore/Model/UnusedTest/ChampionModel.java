@@ -35,11 +35,6 @@ public class ChampionModel {
                         JSONObject data = jsonObject.getJSONObject("data").getJSONObject(champ);
                         ChampionDetails champion = gson.fromJson(data.toString(), ChampionDetails.class);
                         Log.e("sam" , "The url called is " + call.request().url() );
-//                        Log.e("sam", "The title of specific champion is " + champion.getTitle());
-//                        Log.e("sam", "The id of the first skin is " + champion.getChampImagesList().get(0).getId());
-                     //   Log.e("sam", "The championImage is " + champion.getChampionImage().getFull());
-//                        Log.e("sam", champion.getName() + " passive is " + champion.getChampionPassive().getDescription());
-
                         listMutableLiveData.setValue(champion);
                     } catch (JSONException e) {
                         e.printStackTrace();

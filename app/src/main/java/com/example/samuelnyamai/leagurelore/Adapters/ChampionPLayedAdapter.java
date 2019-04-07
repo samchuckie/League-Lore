@@ -38,7 +38,7 @@ public class ChampionPLayedAdapter extends RecyclerView.Adapter <ChampionPLayedA
 
     public void setChampionsPlayedlist(List<String> championsPlayedList) {
         this.championsPlayedList = championsPlayedList;
-        notifyDataSetChanged();;
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

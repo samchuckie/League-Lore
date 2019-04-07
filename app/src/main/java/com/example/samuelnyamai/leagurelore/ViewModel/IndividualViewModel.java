@@ -49,7 +49,7 @@ public class IndividualViewModel extends AndroidViewModel {
         Log.e("sam" , "Retreiving PREVIOUS instance IN THE INDIVIDUAL");
         return liveDatas;
     }
-    public void callChampion(String champion){
+    public void callChampion(){
         altChampionModels.getListMutableLiveData(getName());
     }
 

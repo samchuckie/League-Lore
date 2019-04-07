@@ -4,22 +4,19 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
-
 import com.example.samuelnyamai.leagurelore.Model.AllChampAsync;
 import com.example.samuelnyamai.leagurelore.Model.AltChampionModel;
-import com.example.samuelnyamai.leagurelore.Room.ChampionsDatabase;
 import com.example.samuelnyamai.leagurelore.data.ChampionDetails;
 
 import java.util.List;
 
 public class AllChampionsViewModel extends AndroidViewModel {
     private MutableLiveData<ChampionDetails> liveData;
-    private LiveData<List<ChampionDetails>> championList;
 
     public LiveData<List<ChampionDetails>> getChampionList() {
+        LiveData<List<ChampionDetails>> championList;
         championList= AllChampAsync.getchampsInstance(getApplication());
         if (championList==null){
             Log.e("sam", "The list is null");

@@ -62,21 +62,16 @@ public class ChampionAdapter extends RecyclerView.Adapter<ChampionAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView champion_name ,champion_blurb,champion_title;
-        ImageView champion_image,champion_background_image;
-        ViewHolder(@NonNull View itemView) {
+        private TextView champion_name ,champion_blurb,champion_title;
+        private ImageView champion_image,champion_background_image;
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             champion_name =itemView.findViewById(R.id.champion_name_tv);
             champion_blurb = itemView.findViewById(R.id.champion_blurb_tv);
             champion_image =itemView.findViewById(R.id.champion_iv);
             champion_background_image =itemView.findViewById(R.id.champion_background_iv);
             champion_title =itemView.findViewById(R.id.champion_title_tv);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    itemClickedInterface.clickeditem(championDetailsList.get(getAdapterPosition()));
-                }
-            });
+            itemView.setOnClickListener(v -> itemClickedInterface.clickeditem(championDetailsList.get(getAdapterPosition())));
         }
     }
 }

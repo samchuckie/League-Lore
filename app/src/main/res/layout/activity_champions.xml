@@ -26,6 +26,7 @@
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:navigationIcon="@drawable/ic_menu_black_24dp"
+            android:elevation="4dp"
             />
     </FrameLayout>
     <android.support.design.widget.NavigationView
@@ -36,8 +37,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/league_header"
         app:menu="@menu/league_drawer_view"
-        >
-
-    </android.support.design.widget.NavigationView>
+        android:elevation="@dimen/sixteen_dp"
+        />
 
 </android.support.v4.widget.DrawerLayout>

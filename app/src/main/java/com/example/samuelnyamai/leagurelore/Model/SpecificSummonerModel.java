@@ -81,19 +81,16 @@ public class SpecificSummonerModel {
                 .observeOn(AndroidSchedulers.mainThread());
 
         Observable<Summoner> summonerObservable = Observable.zip(listCall, listCaller,
-                new BiFunction<List<SummonerRankedInfo>, List<ChampionsPlayed>, Summoner>() {
-            @Override
-            public Summoner apply(List<SummonerRankedInfo> summonerRankedInfos, List<ChampionsPlayed> championsPlayeds) throws Exception {
-                if (summonerRankedInfos != null){
-                    searchsummoner.setSummonerRankedInfoList(summonerRankedInfos);
-                }
-                else {
-                    searchsummoner.setSummonerRankedInfoList(null);
-                }
-                searchsummoner.setChampionsPlayedList(championsPlayeds);
-                return searchsummoner;
-            }
-        });
+                (summonerRankedInfos, championsPlayeds) -> {
+                    if (summonerRankedInfos != null){
+                        searchsummoner.setSummonerRankedInfoList(summonerRankedInfos);
+                    }
+                    else {
+                        searchsummoner.setSummonerRankedInfoList(null);
+                    }
+                    searchsummoner.setChampionsPlayedList(championsPlayeds);
+                    return searchsummoner;
+                });
         summonerObservable.subscribe(new Observer<Summoner>() {
             @Override
             public void onSubscribe(Disposable disposable) {}

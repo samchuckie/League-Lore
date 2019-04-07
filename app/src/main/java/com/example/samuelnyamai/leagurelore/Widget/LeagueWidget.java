@@ -32,7 +32,6 @@ public class LeagueWidget extends AppWidgetProvider {
         }
         else{
             intent = new Intent(context , LogIn.class);
-
         }
 
             PendingIntent clickedPendingIntent = PendingIntent.getActivity(context,0 ,intent,0);

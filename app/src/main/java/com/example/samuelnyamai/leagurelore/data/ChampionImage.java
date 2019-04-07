@@ -28,7 +28,7 @@ public class ChampionImage implements Parcelable {
     public ChampionImage() {
     }
 
-    protected ChampionImage(Parcel in) {
+    private ChampionImage(Parcel in) {
         this.full = in.readString();
     }
 

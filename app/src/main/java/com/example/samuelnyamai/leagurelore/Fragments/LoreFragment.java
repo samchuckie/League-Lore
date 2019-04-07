@@ -11,16 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.example.samuelnyamai.leagurelore.Adapters.TipsAdapter;
-import com.example.samuelnyamai.leagurelore.IndividualChamp;
 import com.example.samuelnyamai.leagurelore.R;
-import com.example.samuelnyamai.leagurelore.ViewModel.AllChampionsViewModel;
 import com.example.samuelnyamai.leagurelore.ViewModel.IndividualViewModel;
-
 import java.util.Objects;
 
 public class LoreFragment extends Fragment {
@@ -56,7 +50,7 @@ public class LoreFragment extends Fragment {
                 individualViewModel.setvisibility("visible");
             }
             else {
-                individualViewModel.callChampion("");
+                individualViewModel.callChampion();
                 Log.e("sam", "Champ tips is so null");
             }
         });

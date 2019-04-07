@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="176dp"
-        android:textSize="@dimen/textsize_sixteen"
+        android:textSize="@dimen/twentyfour_sp"
         tools:text="Charliesdemon"
         android:textColor="@color/white"
         android:gravity="center"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="208dp"
         android:layout_marginStart="80dp">
 
         <TextView
@@ -61,6 +61,13 @@
             android:gravity="center"
             android:id="@+id/summonerlevel_tv"
             />
-    </LinearLayout>
 
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/image_gradient"
+        android:layout_gravity="bottom"
+
+        />
 </FrameLayout>

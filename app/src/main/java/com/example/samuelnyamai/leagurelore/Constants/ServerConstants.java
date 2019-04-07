@@ -29,6 +29,9 @@ public class ServerConstants {
         public static final String TITLE_EXTRA = "TITLE";
         public static final String ID_EXTRA = "ID";
         public static final String IMAGE_EXTRA = "IMAGE";
-        public static final String API_KEY =BuildConfig.ApiKey;
+       // public static final String API_KEY = BuildConfig.ApiKey;
+
+        //  I HAVE PUT THE KEY HERE FOR REFERENCES PURPOSE AS GETTING AN A DEVELOPERS KEY NEED A PERSON TO BE REGISTERED IN THE GAME
+        public static final String API_KEY = "RGAPI-a3b049e2-3cc9-4667-8cbc-3098f9667f13";
 
 }

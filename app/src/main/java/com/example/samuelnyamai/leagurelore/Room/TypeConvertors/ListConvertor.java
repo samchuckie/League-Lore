@@ -1,11 +1,8 @@
 package com.example.samuelnyamai.leagurelore.Room.TypeConvertors;
 
 import android.arch.persistence.room.TypeConverter;
-
-import com.example.samuelnyamai.leagurelore.data.ChampionSkin;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;

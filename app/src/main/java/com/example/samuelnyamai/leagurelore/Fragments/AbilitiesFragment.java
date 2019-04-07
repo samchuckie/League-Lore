@@ -23,9 +23,9 @@ import java.util.Objects;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_PASSIVE;
 
 public class AbilitiesFragment extends Fragment {
-    IndividualViewModel individualViewModel;
-    TextView passive_tv,passivename_tv;
-    ImageView passive_icon;
+    private IndividualViewModel individualViewModel;
+    private TextView passive_tv,passivename_tv;
+    private ImageView passive_icon;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

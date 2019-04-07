@@ -7,4 +7,9 @@
     <color name="black_overlay">#66000000</color>
     <color name="white">@android:color/white</color>
     <color name="black_background_text">@android:color/black</color>
+    <color name="blue_light">#86aee9</color>
+    <color name="blue_heavy">#4a8ad8</color>
+    <color name="blue_heavier">#2c6dd1</color>
+    <color name="grey">#555555</color>
+    <color name="light_grey">#d0d3d4</color>
 </resources>

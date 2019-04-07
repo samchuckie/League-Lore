@@ -38,7 +38,7 @@
             android:textColor="@android:color/white"
             android:id="@+id/champion_title_tv"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title"
-
+            tool:text ="Champion"
             tool:ignore="RtlHardcoded" />
         <TextView
             android:layout_width="match_parent"

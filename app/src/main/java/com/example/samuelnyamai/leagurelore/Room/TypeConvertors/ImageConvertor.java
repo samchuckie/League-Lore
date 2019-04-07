@@ -5,9 +5,7 @@ import android.arch.persistence.room.TypeConverter;
 import com.example.samuelnyamai.leagurelore.data.ChampionImage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
-import java.util.Collections;
 
 public class ImageConvertor {
     private static Gson gson = new Gson();

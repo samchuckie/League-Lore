@@ -22,18 +22,18 @@
           app:civ_border_width="4dp"
           app:civ_border_color="#FF000000"
           android:id="@+id/champion_iv"
-          />
+          android:layout_marginStart="8dp" />
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
           android:layout_marginLeft="16dp"
-          android:textSize="16dp"
+          android:textSize="@dimen/textsize_sixteen"
           tool:text="Name"
           android:textColor="@android:color/white"
           android:gravity="center"
           android:id="@+id/champion_name_tv"
 
-          />
+          android:layout_marginStart="16dp" />
   </LinearLayout>
     <ImageView
         android:layout_width="match_parent"
@@ -48,19 +48,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_marginLeft="8dp"
+        android:textSize="@dimen/sixteen_dp"
+        android:layout_marginLeft="@dimen/eight_dp"
         android:textColor="@android:color/white"
-        android:text="Aatrox"
+        tool:text="Aatrox"
         android:id="@+id/champion_title_tv"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title"
 
-        />
+        android:layout_marginStart="8dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tool:text="Aatrox is a legendary warrior, one of only five that remain of"
-        android:textSize="16dp"
+        android:textSize="@dimen/textsize_sixteen"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:textColor="@android:color/white"
