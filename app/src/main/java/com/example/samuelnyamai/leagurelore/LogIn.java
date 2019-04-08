@@ -18,14 +18,10 @@ import com.example.samuelnyamai.leagurelore.ViewModel.SummonerViewModel;
 
 public class LogIn extends AppCompatActivity {
     // TODO EXPLAIN HOW TO GET API KEY
-    // TODO GIVE A LIST OF SAMPLE SUMMONERS NAMES FOR TESTING IN NA(NORTH AMERICA). RANKED AND UNRANKED
-    // TODO GIVE A LIST OF SAMPLE SUMMONERS NAMES FOR TESTING IN EUW(EUROPE WEST). RANKED AND UNRANKED
     // TODO TRY AND IMPLEMENT LOCALIZATION. DIALOG PICKER TO CHANGE LANGUAGE TO SPECIFIC REGION
     // TODO IMPLIMENT CUSTOM FORWARD ARROW. IN XD AND IMPORT SVG
     // TODO IMPLEMENT CUSTOM LAYOUT RESOURCES FOR THE DOFFERENT CONTINTENTS
     // TODO SETUP TASK TO CHECK API_KEY REFRESH AND POSSIBLE AUTOREFRESH
-    // TODO CHECK INTERNET CONNECTIVITY
-    // TODO ADD PROGRESS BAR
     // TODO UNCOMMENT REVISIONDATE FOR USE IN UPDATE
     SharedPreferences sharedPreferences ;
     Context context;
@@ -52,6 +48,22 @@ public class LogIn extends AppCompatActivity {
         proceed.setOnClickListener(clicker -> {
 
                 // So I discovered that calling the getSelectedItem actually calls the onItemSelected ->parent.getSelectedItem(position).toString();
+
+
+
+
+//            So here is a list of names that can be searched according to region(THE SPINNER CHOICES).
+//            NA - (SEARCH FOR "NA ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - Shiphtur, Sophist Sage1.
+//            EUW- (SEARCH FOR "EUW ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - sandstorm73 ,charliesdemon.
+//            BZL- (SEARCH FOR "BRAZIL ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIJACK.
+//            JPN- (SEARCH FOR "JPN ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - isurugi .
+//            OCE- (SEARCH FOR "OCE ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIuviophile, alukaa.
+//
+
+
+
+
+
             summoner_name = summoner_username.getText().toString();
             server = serverSpinner.getSelectedItem().toString();
             if (!summoner_name.isEmpty()) {
