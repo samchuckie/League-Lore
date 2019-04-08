@@ -22,7 +22,9 @@
                 android:resource="@xml/league_widget_info" />
         </receiver>
 
-        <activity android:name=".IndividualChamp"></activity>
+        <activity android:name=".IndividualChamp">
+            
+        </activity>
         <activity
             android:name=".SummonerActivity"
             android:parentActivityName=".Champions"
