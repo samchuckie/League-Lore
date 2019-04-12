@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;import android.support.v7.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,9 +56,11 @@ public class ChampionFragment extends Fragment implements ChampionAdapter.ItemCl
         // TODO ADD TAGS TO A SET TO SEE ALL THE TAGS AVAILABLE
 
         allChampionsViewModel.getChampionList().observe(this, championDetails -> {
+            Log.e("sam" ,"Something is being observed");
                     if (championDetails != null){
                         for (ChampionDetails champ:championDetails) {
                             championAdapter.addChampion(champ);
+                            Log.e("sam" , "The champ is " + champ.getName());
                         }
                     }
                     else {
@@ -65,6 +68,7 @@ public class ChampionFragment extends Fragment implements ChampionAdapter.ItemCl
                         //  TODO CHECK IF THERE IS INTERNET. THIS IS AFTER DATABASE IS NULL
 
                             allChampionsViewModel.getListMutableLiveData();
+                            Log.e("sam" , "champs are null");
 
                         }
                 });

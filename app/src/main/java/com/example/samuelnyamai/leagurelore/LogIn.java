@@ -1,91 +1,56 @@
 package com.example.samuelnyamai.leagurelore;
 
-
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
+import android.util.Log;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.Toast;
-import com.example.samuelnyamai.leagurelore.ViewModel.SummonerViewModel;
+import android.widget.TextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class LogIn extends AppCompatActivity {
-    // TODO EXPLAIN HOW TO GET API KEY
     // TODO TRY AND IMPLEMENT LOCALIZATION. DIALOG PICKER TO CHANGE LANGUAGE TO SPECIFIC REGION
     // TODO IMPLIMENT CUSTOM FORWARD ARROW. IN XD AND IMPORT SVG
     // TODO IMPLEMENT CUSTOM LAYOUT RESOURCES FOR THE DOFFERENT CONTINTENTS
     // TODO SETUP TASK TO CHECK API_KEY REFRESH AND POSSIBLE AUTOREFRESH
     // TODO UNCOMMENT REVISIONDATE FOR USE IN UPDATE
-    SharedPreferences sharedPreferences ;
-    Context context;
-    String shared_preference;
-    String summoner_name ,server;
+
+    Button login_proceed ,login_signup;
+    TextView login_email, login_password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = this;
-        sharedPreferences = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        shared_preference =sharedPreferences.getString(getString(R.string.summoner_name_key) , null);
-        if(shared_preference!=null){
-            startActivity(new Intent(this ,Champions.class));
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        if (user != null) {
+            startActivity(new Intent(this, Champions.class));
+            Log.e("sam", "auth is not null");
         }
         setContentView(R.layout.activity_log_in);
-        SummonerViewModel viewModel = ViewModelProviders.of(this).get(SummonerViewModel.class);
-        EditText summoner_username = findViewById(R.id.summoner_username);
-        final Spinner serverSpinner = findViewById(R.id.server_spinner);
-        final ArrayAdapter<CharSequence> serverArrayAdapter = ArrayAdapter.createFromResource(this,
-                R.array.server ,android.R.layout.simple_spinner_item);
-        serverArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Button proceed = findViewById(R.id.proceed_button);
-        serverSpinner.setAdapter(serverArrayAdapter);
-        proceed.setOnClickListener(clicker -> {
+        login_proceed = findViewById(R.id.login_proceed);
+        login_signup = findViewById(R.id.login_signup);
+        login_email = findViewById(R.id.login_email);
+        login_password = findViewById(R.id.login_password);
 
-                // So I discovered that calling the getSelectedItem actually calls the onItemSelected ->parent.getSelectedItem(position).toString();
+        login_proceed.setOnClickListener(listener -> {
+            String email = login_email.getText().toString();
+            String password = login_password.getText().toString();
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(this, Champions.class));
+                } else {
+                    Log.e("sam", "Log in failed");
+                }
+            });
+        });
+        login_signup.setOnClickListener(listener -> {
+            startActivity(new Intent(this, SignUp.class));
+        });
 
-
-
-
-//            So here is a list of names that can be searched according to region(THE SPINNER CHOICES).
-//            NA - (SEARCH FOR "NA ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - Shiphtur, Sophist Sage1.
-//            EUW- (SEARCH FOR "EUW ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - sandstorm73 ,charliesdemon.
-//            BZL- (SEARCH FOR "BRAZIL ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIJACK.
-//            JPN- (SEARCH FOR "JPN ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - isurugi .
-//            OCE- (SEARCH FOR "OCE ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIuviophile, alukaa.
-//
-
-
-
-
-
-            summoner_name = summoner_username.getText().toString();
-            server = serverSpinner.getSelectedItem().toString();
-            if (!summoner_name.isEmpty()) {
-                ProgressBar login_progress = findViewById(R.id.login_progress);
-                login_progress.setVisibility(View.VISIBLE);
-                viewModel.getDetails(server, summoner_name);
-                viewModel.getSummonerLiveData().observe(this, summoneresponse -> {
-                    if (summoneresponse != null) {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(getString(R.string.summoner_name_key), summoneresponse.getName());
-                        editor.putString(getString(R.string.summoner_server), server);
-                        editor.putInt(getString(R.string.summoner_icon_key), summoneresponse.getProfileIconId());
-                        editor.putInt(getString(R.string.summoner_level_key), summoneresponse.getSummonerLevel());
-                        editor.apply();
-                        startActivity(new Intent(this, Champions.class));
-                    } else {
-                        Toast.makeText(this, "Sorry the summoner " + summoner_name +
-                                " does not exist in " + server + " server", Toast.LENGTH_LONG).show();
-                    }
-                });
-                login_progress.setVisibility(View.GONE);
-            }
-    });
-}
+    }
 }

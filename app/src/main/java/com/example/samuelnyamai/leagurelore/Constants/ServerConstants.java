@@ -32,6 +32,6 @@ public class ServerConstants {
        // public static final String API_KEY = BuildConfig.ApiKey;
 
         //  I HAVE PUT THE KEY HERE FOR REFERENCES PURPOSE AS GETTING AN A DEVELOPERS KEY NEED A PERSON TO BE REGISTERED IN THE GAME
-        public static final String API_KEY = "RGAPI-f892db47-74a9-4930-ad64-40444f528a29";
+        public static final String API_KEY = "RGAPI-79904c24-8ba2-4d5c-8a0f-778e3f6f01af";
 
 }

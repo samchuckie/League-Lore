@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,61 +8,6 @@
     tools:context=".LogIn"
     android:background="@color/light_grey"
     >
-
-    <EditText
-        android:id="@+id/summoner_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="44dp"
-        android:background="@color/white"
-        android:hint="@string/summoner_name_hint"
-        android:textStyle="bold"
-        android:inputType="text"
-        android:paddingLeft="@dimen/eight_dp"
-        android:paddingRight="@dimen/eight_dp"
-        android:textSize="@dimen/textsize_sixteen"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Spinner
-        android:id="@+id/server_spinner"
-        android:layout_width="@dimen/spinner_width"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/eight_dp"
-        android:layout_marginLeft="@dimen/eight_dp"
-        android:layout_marginEnd="@dimen/eight_dp"
-        android:layout_marginRight="@dimen/eight_dp"
-        android:background="@color/blue_heavier"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/summoner_username"
-        app:layout_constraintTop_toTopOf="@+id/summoner_username"
-        tools:layout_height="20dp"/>
-
-    <Button
-        android:id="@+id/proceed_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="@dimen/eight_dp"
-        android:background="@drawable/rounded_shape"
-        android:drawableEnd="@drawable/ic_arrow_forward_black_24dp"
-        android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
-        android:paddingLeft="@dimen/eight_dp"
-        android:paddingRight="@dimen/eight_dp"
-        android:text="@string/proceed"
-        android:textColor="@color/white"
-        android:textSize="@dimen/textsize_sixteen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summoner_username"
-        android:layout_marginEnd="@dimen/eight_dp"
-        android:elevation="6dp"
-        />
 
     <ImageView
         android:id="@+id/imageView"
@@ -79,22 +25,87 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/league_icon" />
 
-    <ProgressBar
-        android:id="@+id/login_progress"
+    <EditText
+        android:id="@+id/login_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/eight_dp"
-        android:layout_marginLeft="@dimen/eight_dp"
-        android:layout_marginTop="@dimen/eight_dp"
-        android:layout_marginEnd="@dimen/eight_dp"
-        android:layout_marginRight="@dimen/eight_dp"
-        android:layout_marginBottom="156dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/white"
+        android:hint="@string/input_email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="@dimen/eight_dp"
+        android:paddingRight="@dimen/eight_dp"
+        android:textSize="@dimen/textsize_sixteen"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/proceed_button"
-        app:layout_constraintVertical_bias="0.736"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/white"
+        android:hint="@string/input_password"
+        android:inputType="textPassword"
+        android:paddingLeft="@dimen/eight_dp"
+        android:paddingRight="@dimen/eight_dp"
+        android:textSize="@dimen/textsize_sixteen"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_email" />
+
+    <Button
+        android:id="@+id/login_proceed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/rounded_shape"
+        android:drawableEnd="@drawable/ic_arrow_forward_black_24dp"
+        android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+        android:elevation="6dp"
+        android:paddingLeft="@dimen/eight_dp"
+        android:paddingRight="@dimen/eight_dp"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_sixteen"
+        app:layout_constraintEnd_toStartOf="@+id/login_signup"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_password" />
+
+    <Button
+        android:id="@+id/login_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="160dp"
+        android:layout_marginRight="160dp"
+        android:background="@drawable/rounded_shape"
+        android:elevation="6dp"
+        android:paddingLeft="@dimen/eight_dp"
+        android:paddingRight="@dimen/eight_dp"
+        android:text="@string/signin"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_sixteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/login_proceed" />
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>

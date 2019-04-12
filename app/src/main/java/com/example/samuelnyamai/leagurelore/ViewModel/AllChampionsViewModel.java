@@ -22,6 +22,13 @@ public class AllChampionsViewModel extends AndroidViewModel {
             Log.e("sam", "The list is null");
             getListMutableLiveData();
         }
+
+
+        //getListMutableLiveData();
+
+
+
+
         Log.e("sam" ,"The champion list is being fetched from database");
         return championList;
     }

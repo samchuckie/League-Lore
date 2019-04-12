@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "341920405170",
+    "firebase_url": "https://league-lore.firebaseio.com",
+    "project_id": "league-lore",
+    "storage_bucket": "league-lore.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341920405170:android:ff41538782a9738c",
+        "android_client_info": {
+          "package_name": "com.example.samuelnyamai.leagurelore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341920405170-purm1l918i7vviffnbf0mbrrdrqarqf0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.samuelnyamai.leagurelore",
+            "certificate_hash": "d8b1f1d7beb3ddaae4e92fcd33933f8beaf8b46c"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkZcXZhqe85RquAXK9g5jpcVCvUcYOFTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "341920405170-f5s68j49398jc81c0ma4u7sfe1li4ha5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

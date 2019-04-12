@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Leagure Lore</string>
     <string name="summoner_name_hint">Enter Summoner name</string>
-    <string name="proceed">Proceed</string>
+    <string name="login">Log in</string>
+    <string name="signin">Sign up</string>
     <string name="preference_file_key" />
     <string name="summoner_name_key">summoner_key</string>
     <string name="summoner_server">summoner_server</string>
@@ -21,153 +22,7 @@
         <item>OCE</item>
         <item>BZL</item>
     </string-array>
-    <string-array name="champions">
-        <item>Jax</item>
-        <item>Aatrox</item>
-        <item>Sona</item>
-        <item>Tristana</item>
-        <item>Varus</item>
-        <item>Kaisa</item>
-        <item>Fiora</item>
-        <item>Singed</item>
-        <item>TahmKench</item>
-        <item>Leblanc</item>
-        <item>Thresh</item>
-        <item>Karma</item>
-        <item>Jhin</item>
-        <item>Rumble</item>
-        <item>Udyr</item>
-        <item>LeeSin</item>
-        <item>Yorick</item>
-        <item>Ornn</item>
-        <item>Kayn</item>
-        <item>Neeko</item>
-        <item>Kassadin</item>
-        <item>Sivir</item>
-        <item>MissFortune</item>
-        <item>Draven</item>
-        <item>Yasuo</item>
-        <item>Kayle</item>
-        <item>Shaco</item>
-        <item>Renekton</item>
-        <item>Hecarim</item>
-        <item>Fizz</item>
-        <item>KogMaw</item>
-        <item>Maokai</item>
-        <item>Lissandra</item>
-        <item>Jinx</item>
-        <item>Urgot</item>
-        <item>Fiddlesticks</item>
-        <item>Galio</item>
-        <item>Pantheon</item>
-        <item>Talon</item>
-        <item>Gangplank</item>
-        <item>Ezreal</item>
-        <item>Gnar</item>
-        <item>Teemo</item>
-        <item>Annie</item>
-        <item>Mordekaiser</item>
-        <item>Azir</item>
-        <item>Kennen</item>
-        <item>Riven</item>
-        <item>Chogath</item>
-        <item>Poppy</item>
-        <item>Taliyah</item>
-        <item>Illaoi</item>
-        <item>Pyke</item>
-        <item>Heimerdinger</item>
-        <item>Alistar</item>
-        <item>XinZhao</item>
-        <item>Lucian</item>
-        <item>Volibear</item>
-        <item>Sejuani</item>
-        <item>Nidalee</item>
-        <item>Garen</item>
-        <item>Leona</item>
-        <item>Zed</item>
-        <item>Blitzcrank</item>
-        <item>Rammus</item>
-        <item>Velkoz</item>
-        <item>Caitlyn</item>
-        <item>Trundle</item>
-        <item>Kindred</item>
-        <item>Quinn</item>
-        <item>Ekko</item>
-        <item>Nami</item>
-        <item>Swain</item>
-        <item>Sylas</item>
-        <item>Taric</item>
-        <item>Syndra</item>
-        <item>Rakan</item>
-        <item>Skarner</item>
-        <item>Braum</item>
-        <item>Veigar</item>
-        <item>Xerath</item>
-        <item>Corki</item>
-        <item>Nautilus</item>
-        <item>Ahri</item>
-        <item>Jayce</item>
-        <item>Darius</item>
-        <item>Tryndamere</item>
-        <item>Janna</item>
-        <item>Elise</item>
-        <item>Vayne</item>
-        <item>Brand</item>
-        <item>Zoe</item>
-        <item>Graves</item>
-        <item>Soraka</item>
-        <item>Xayah</item>
-        <item>Karthus</item>
-        <item>Vladimir</item>
-        <item>Zilean</item>
-        <item>Katarina</item>
-        <item>Shyvana</item>
-        <item>Warwick</item>
-        <item>Ziggs</item>
-        <item>Kled</item>
-        <item>Khazix</item>
-        <item>Olaf</item>
-        <item>TwistedFate</item>
-        <item>Nunu</item>
-        <item>Rengar</item>
-        <item>Bard</item>
-        <item>Irelia</item>
-        <item>Ivern</item>
-        <item>MonkeyKing</item>
-        <item>Ashe</item>
-        <item>Kalista</item>
-        <item>Akali</item>
-        <item>Vi</item>
-        <item>Amumu</item>
-        <item>Lulu</item>
-        <item>Morgana</item>
-        <item>Nocturne</item>
-        <item>Diana</item>
-        <item>AurelionSol</item>
-        <item>Zyra</item>
-        <item>Viktor</item>
-        <item>Cassiopeia</item>
-        <item>Nasus</item>
-        <item>Twitch</item>
-        <item>DrMundo</item>
-        <item>Orianna</item>
-        <item>Evelynn</item>
-        <item>RekSai</item>
-        <item>Lux</item>
-        <item>Sion</item>
-        <item>Camille</item>
-        <item>MasterYi</item>
-        <item>Ryze</item>
-        <item>Malphite</item>
-        <item>Anivia</item>
-        <item>Shen</item>
-        <item>JarvanIV</item>
-        <item>Malzahar</item>
-        <item>Zac</item>
-        <item>Gragas</item>
-    </string-array>
-
-    <string name="title_activity_summoner_full">SummonerFull</string>
+        <string name="title_activity_summoner_full">SummonerFull</string>
     <string name="champions">Champions</string>
     <string name="abilities">Abilities</string>
     <string name="champion">Champion</string>
@@ -178,4 +33,6 @@
     <string name="summoner_search">Summoner search</string>
     <string name="n_a">N/A</string>
     <string name="champion_image_transistion">champion_image</string>
+    <string name="input_email">Input email</string>
+    <string name="input_password">Input password</string>
 </resources>

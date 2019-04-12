@@ -116,7 +116,6 @@ public class Champions extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.e("sam" , "The submitted text is " + query);
                 summonerViewModel.getDetails(server_pref,query);
                 summonerViewModel.getSummonerLiveData().observe(Champions.this ,summoneresponse -> {
                     if (summoneresponse != null) {
