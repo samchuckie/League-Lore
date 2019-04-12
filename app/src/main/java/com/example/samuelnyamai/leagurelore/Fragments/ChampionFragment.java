@@ -60,7 +60,7 @@ public class ChampionFragment extends Fragment implements ChampionAdapter.ItemCl
                     if (championDetails != null){
                         for (ChampionDetails champ:championDetails) {
                             championAdapter.addChampion(champ);
-                            Log.e("sam" , "The champ is " + champ.getName());
+                           // Log.e("sam" , "The champ is " + champ.getName());
                         }
                     }
                     else {

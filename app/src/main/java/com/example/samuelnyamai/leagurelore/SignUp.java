@@ -50,7 +50,7 @@ public class SignUp extends AppCompatActivity {
 //
             String summoner_name = summoner_username.getText().toString();
             String server = serverSpinner.getSelectedItem().toString();
-            if (!summoner_name.isEmpty()) {
+            if (!summoner_name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
                 ProgressBar login_progress = findViewById(R.id.login_progress);
                 login_progress.setVisibility(View.VISIBLE);
                 viewModel.getDetails(server, summoner_name);
@@ -79,6 +79,9 @@ public class SignUp extends AppCompatActivity {
                     }
                 });
                 login_progress.setVisibility(View.GONE);
+            }
+            else {
+                Toast.makeText(this ,"Input all the fields" ,Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -40,13 +42,18 @@ public class LogIn extends AppCompatActivity {
         login_proceed.setOnClickListener(listener -> {
             String email = login_email.getText().toString();
             String password = login_password.getText().toString();
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
-                if (task.isSuccessful()) {
-                    startActivity(new Intent(this, Champions.class));
-                } else {
-                    Log.e("sam", "Log in failed");
-                }
-            });
+            if(!email.isEmpty() && !password.isEmpty()) {
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        startActivity(new Intent(this, Champions.class));
+                    } else {
+                        Log.e("sam", "Log in failed");
+                    }
+                });
+            }
+            else {
+                Toast.makeText(this ,"Input all the fields" ,Toast.LENGTH_SHORT).show();
+            }
         });
         login_signup.setOnClickListener(listener -> {
             startActivity(new Intent(this, SignUp.class));

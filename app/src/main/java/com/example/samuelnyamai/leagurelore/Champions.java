@@ -22,6 +22,11 @@ import android.widget.Toast;
 
 import com.example.samuelnyamai.leagurelore.Fragments.ChampionFragment;
 import com.example.samuelnyamai.leagurelore.ViewModel.SummonerViewModel;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PNG_IMAGE_EXTENSION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PROFILE_BASE_URL;
@@ -39,11 +44,16 @@ public class Champions extends AppCompatActivity {
     NavigationView league_navigationview;
     DrawerLayout drawerLayout;
     String username_pref,server_pref;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champions);
+//        MobileAds.initialize(this, "ca-app-pub-1271995389221448~1120532171");
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         summonerViewModel = ViewModelProviders.of(this).get(SummonerViewModel.class);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,6 +92,7 @@ public class Champions extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(getString(R.string.summoner_name_key), null);
                     editor.apply();
+                    FirebaseAuth.getInstance().signOut();
                     startActivity(new Intent(this ,LogIn.class));
 
             }
@@ -96,8 +107,6 @@ public class Champions extends AppCompatActivity {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.summoner_search:
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -116,7 +125,16 @@ public class Champions extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                summonerViewModel.getDetails(server_pref,query);
+
+
+//            So here is a list of names that can be searched according to region(THE SPINNER CHOICES).
+//            NA - (SEARCH FOR "NA ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - Shiphtur, Sophist Sage1.
+//            EUW- (SEARCH FOR "EUW ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - sandstorm73 ,charliesdemon.
+//            BZL- (SEARCH FOR "BRAZIL ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIJACK.
+//            JPN- (SEARCH FOR "JPN ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - isurugi .
+//            OCE- (SEARCH FOR "OCE ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIuviophile, alukaa.
+
+                summonerViewModel.getDetails("EUW",query);
                 summonerViewModel.getSummonerLiveData().observe(Champions.this ,summoneresponse -> {
                     if (summoneresponse != null) {
                         Intent intent = new Intent(Champions.this, SummonerActivity.class);
@@ -139,5 +157,16 @@ public class Champions extends AppCompatActivity {
             }
         });
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
     }
 }
