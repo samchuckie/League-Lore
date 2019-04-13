@@ -44,14 +44,13 @@ public class Champions extends AppCompatActivity {
     NavigationView league_navigationview;
     DrawerLayout drawerLayout;
     String username_pref,server_pref;
-    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champions);
 //        MobileAds.initialize(this, "ca-app-pub-1271995389221448~1120532171");
-        mAdView = findViewById(R.id.adView);
+        AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         summonerViewModel = ViewModelProviders.of(this).get(SummonerViewModel.class);
