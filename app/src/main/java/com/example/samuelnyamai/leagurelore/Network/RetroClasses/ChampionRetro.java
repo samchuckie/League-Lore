@@ -9,7 +9,6 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHA
 public class ChampionRetro {
     public static Retrofit getAllChampionInstance(){
         return new Retrofit.Builder()
-                //.baseUrl(S_CHAMPION_BASE_URL)
                 .baseUrl(CHAMPIONS_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

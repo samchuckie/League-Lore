@@ -19,15 +19,13 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.samuelnyamai.leagurelore.Fragments.ChampionFragment;
 import com.example.samuelnyamai.leagurelore.ViewModel.SummonerViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.LOCAL_URL_PROFILE;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PNG_IMAGE_EXTENSION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PROFILE_BASE_URL;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.SERVER_EXTRA;
@@ -38,7 +36,7 @@ public class Champions extends AppCompatActivity {
     // TODO CAN DATABINDING BE USED WITH NAV_DRAWER
     // TODO BACK ACTIVITY SHOULD EXIT THE APP NOT GO TO LOG IN
     // TODO PREFERENCE FRAGMENT FOR LANGUAGE
-    //  TODO ADD CHALLENGER TIER FOR THE NAVIGATION OPTIONS
+    // TODO ADD CHALLENGER TIER FOR THE NAVIGATION OPTIONS
     SummonerViewModel summonerViewModel;
     SharedPreferences sharedPreferences;
     NavigationView league_navigationview;
@@ -49,7 +47,6 @@ public class Champions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champions);
-//        MobileAds.initialize(this, "ca-app-pub-1271995389221448~1120532171");
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -74,6 +71,7 @@ public class Champions extends AppCompatActivity {
             username_tv.setText(username_pref);
             server_tv.setText(server_pref);
             level_tv.setText(String.valueOf(user_level));
+//            Picasso.get().load(LOCAL_URL_PROFILE + user_icon + PNG_IMAGE_EXTENSION).noFade().into(usericon_iv);
             Picasso.get().load(PROFILE_BASE_URL + user_icon + PNG_IMAGE_EXTENSION).noFade().into(usericon_iv);
         }
         ChampionFragment championFragment = new ChampionFragment();
@@ -86,14 +84,12 @@ public class Champions extends AppCompatActivity {
             startActivity((intent));
         });
         league_navigationview.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()){
-                case R.id.logout:
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(getString(R.string.summoner_name_key), null);
-                    editor.apply();
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(this ,LogIn.class));
-
+            if (item.getItemId() == R.id.logout) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(getString(R.string.summoner_name_key), null);
+                editor.apply();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LogIn.class));
             }
             drawerLayout.closeDrawers();
             return  true;
@@ -102,10 +98,9 @@ public class Champions extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -124,15 +119,6 @@ public class Champions extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
-
-//            So here is a list of names that can be searched according to region(THE SPINNER CHOICES).
-//            NA - (SEARCH FOR "NA ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - Shiphtur, Sophist Sage1.
-//            EUW- (SEARCH FOR "EUW ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - sandstorm73 ,charliesdemon.
-//            BZL- (SEARCH FOR "BRAZIL ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIJACK.
-//            JPN- (SEARCH FOR "JPN ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - isurugi .
-//            OCE- (SEARCH FOR "OCE ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIuviophile, alukaa.
-
                 summonerViewModel.getDetails("EUW",query);
                 summonerViewModel.getSummonerLiveData().observe(Champions.this ,summoneresponse -> {
                     if (summoneresponse != null) {
@@ -144,23 +130,18 @@ public class Champions extends AppCompatActivity {
                         Toast.makeText(Champions.this, "Sorry the summoner " + query +
                                 " does not exist in " + server_pref + " server", Toast.LENGTH_LONG).show();
                     }
-
                 });
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                //TODO RETURN SUMMONERS WITH NAMES LIKE CURENT TEXT. DOESNT HAVE TO TYPE PUT FULL NAME
                 Log.e("sam" , "The changed text is " + newText);
                 return false;
             }
         });
         return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 
     @Override

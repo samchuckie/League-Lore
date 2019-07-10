@@ -5,17 +5,15 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
-    android:paddingBottom="@dimen/sixteen_dp"
-    android:elevation="6dp"
+    android:layout_height="400dp"
+    android:layout_margin="@dimen/eight_dp"
 
     >
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:paddingBottom="16dp"
-        android:background="@color/black_background_text"
 
         >
 
@@ -23,30 +21,45 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"
             tool:background="@drawable/a"
             android:contentDescription="@string/champion_view_desciption"
             android:scaleType="centerCrop"
             android:id="@+id/champion_background_iv"
             />
         <TextView
+            android:id="@+id/champion_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight_dp"
+            android:layout_marginLeft="@dimen/eight_dp"
+            android:fontFamily="@font/oxygen_light"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textsize_sixteen"
+            tool:text="Aatrox"
+            />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginLeft="@dimen/eight_dp"
-            android:textColor="@android:color/white"
+            android:layout_marginTop="@dimen/eight_dp"
+            android:textColor="@android:color/black"
             android:id="@+id/champion_title_tv"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title"
             tool:text ="Champion"
-            tool:ignore="RtlHardcoded" />
+            android:fontFamily="@font/oxygen_light"
+            android:layout_marginStart="@dimen/eight_dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tool:text="Aatrox is a legendary warrior, one of only five that remain of"
             android:textSize="@dimen/textsize_sixteen"
+            android:fontFamily="@font/oxygen_light"
             android:layout_marginLeft="@dimen/eight_dp"
             android:layout_marginRight="@dimen/eight_dp"
-            android:textColor="@android:color/white"
+            android:layout_marginTop="@dimen/eight_dp"
+            android:textColor="@android:color/black"
             android:maxLines="1"
             android:ellipsize="end"
             android:id="@+id/champion_blurb_tv"
@@ -60,7 +73,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
         android:visibility="gone"
 
         >
@@ -73,17 +85,18 @@
             app:civ_border_color="#FF000000"
             android:id="@+id/champion_iv"
             tool:ignore="RtlHardcoded" />
+
         <TextView
+            android:id="@+id/champion_name_tvs"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:textSize="@dimen/textsize_sixteen"
-            tool:text="Name"
-            android:textColor="@android:color/white"
+            android:fontFamily="@font/oxygen_light"
             android:gravity="center"
-            android:id="@+id/champion_name_tv"
-
-            android:layout_marginStart="16dp" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textsize_sixteen"
+            tool:text="Aatrox" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

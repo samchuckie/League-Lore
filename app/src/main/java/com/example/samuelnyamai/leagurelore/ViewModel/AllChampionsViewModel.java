@@ -17,6 +17,7 @@ public class AllChampionsViewModel extends AndroidViewModel {
 
     public LiveData<List<ChampionDetails>> getChampionList() {
         LiveData<List<ChampionDetails>> championList;
+        //call the database for all champions
         championList= AllChampAsync.getchampsInstance(getApplication());
         if (championList==null){
             Log.e("sam", "The list is null");
@@ -37,10 +38,12 @@ public class AllChampionsViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<ChampionDetails> getListMutableLiveData() {
-         if(liveData==null){
-             altChampionModel.getListMutableLiveData();
-             liveData =altChampionModel.getListMutableLiveDatas();
-         }
-         return liveData;
+//         if(liveData==null){
+//             altChampionModel.getListMutableLiveData();
+//             liveData =altChampionModel.getListMutableLiveDatas();
+//         }
+        altChampionModel.getListMutableLiveData();
+        liveData =altChampionModel.getListMutableLiveDatas();
+        return liveData;
     }
 }

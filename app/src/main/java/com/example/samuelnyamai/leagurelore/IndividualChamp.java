@@ -25,6 +25,8 @@ import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.ID_
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.IMAGE_EXTRA;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.JPG_IMAGE_EXTENSION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.KEY_EXTRA;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.LOCAL_URL_CHAMPION;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.LOCAL_URL_IMAGESPLASH;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.NAME_EXTRA;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.TITLE_EXTRA;
 

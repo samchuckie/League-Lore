@@ -43,8 +43,8 @@ public class AltChampionModel {
                     String key = keys.next();
                     JSONObject datas = data.getJSONObject(key);
                     ChampionDetails champion = gson.fromJson(datas.toString(), ChampionDetails.class);
-                    AllChampAsync.insertChampion(context,champion);
-                    Log.e("sam" , "Champion is " + champion.getName());
+                    //AllChampAsync.insertChampion(context,champion);
+                    //Log.e("sam" , "Champion is " + champion.getName());
                     listMutableLiveDatas.setValue(champion);
                 }
             } catch (JSONException e) {

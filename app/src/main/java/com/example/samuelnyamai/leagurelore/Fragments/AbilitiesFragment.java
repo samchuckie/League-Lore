@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso;
 import java.util.Objects;
 
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_PASSIVE;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.LOCAL_URL_PASSIVE;
 
 public class AbilitiesFragment extends Fragment {
     private IndividualViewModel individualViewModel;
@@ -65,7 +66,7 @@ public class AbilitiesFragment extends Fragment {
 
 
     private void updateUI(ChampionPassive championPassive) {
-        Picasso.get().load(CHAMPION_PASSIVE + championPassive.getChampionImage().getFull()).into(passive_icon);
+        Picasso.get().load(LOCAL_URL_PASSIVE + championPassive.getChampionImage().getFull()).into(passive_icon);
         Log.e("sam" , "The passive path is " + championPassive.getChampionImage().getFull());
         passive_tv.setText(championPassive.getDescription());
         passivename_tv.setText(championPassive.getName());

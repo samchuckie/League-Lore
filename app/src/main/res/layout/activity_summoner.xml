@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <include layout="@layout/header_file"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -25,7 +26,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="250dp"
         android:orientation="vertical"
-
         >
 
         <TextView
@@ -82,46 +82,22 @@
                 android:id="@+id/soloranked_iv"
                 />
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/sixteen_dp"
-
+                style="@style/summoner_linear"
                 >
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/n_a"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="@dimen/sixteen_dp"
+                    style="@style/summoner_textbox"
                     android:id="@+id/soloranked_tv"
-                    android:textSize="@dimen/textsize_sixteen"
                     />
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/sixteen_dp"
-                    android:text="@string/n_a"
-                    android:textColor="@android:color/white"
+                    style="@style/summoner_textbox"
                     android:id="@+id/solorankedpoint_tv"
-                    android:textSize="@dimen/textsize_sixteen"
-
                     />
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/n_a"
-                    android:textColor="@color/white"
+                    style="@style/summoner_textbox"
                     android:id="@+id/leaguepointssolo_tv"
-                    android:textSize="@dimen/textsize_sixteen"
-
                     />
             </LinearLayout>
-
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -139,44 +115,21 @@
                 android:contentDescription="@string/ranked_solo_emblem"
                 />
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/sixteen_dp"
+                style="@style/summoner_linear"
                 >
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/n_a"
-                    android:layout_marginTop="@dimen/sixteen_dp"
-                    android:textColor="@color/white"
                     android:id="@+id/flexranked_tv"
-                    android:textSize="@dimen/textsize_sixteen"
-
+                    style="@style/summoner_textbox"
                     />
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/n_a"
-                    android:layout_marginTop="@dimen/sixteen_dp"
-                    android:textColor="@android:color/white"
                     android:id="@+id/flexrankedpoints_tv"
-                    android:textSize="@dimen/textsize_sixteen"
-
+                    style="@style/summoner_textbox"
                     />
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/sixteen_dp"
-                    android:text="@string/n_a"
-                    android:textColor="@color/white"
                     android:id="@+id/leaguepointsflex_tv"
-                    android:textSize="@dimen/textsize_sixteen"
-
+                    style="@style/summoner_textbox"
                     />
             </LinearLayout>
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -185,8 +138,6 @@
             android:id="@+id/unranked"
             android:visibility="gone"
             tools:visibility="visible"
-
-
             >
             <ImageView
                 android:layout_width="0dp"
@@ -196,48 +147,22 @@
                 android:contentDescription="@string/ranked_solo_emblem"
                 />
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/sixteen_dp"
+                style="@style/summoner_linear"
+
                 >
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/n_a"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="@dimen/sixteen_dp"
-                    android:textSize="@dimen/textsize_sixteen"
-
+                    style="@style/summoner_textbox"
                     />
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/sixteen_dp"
-                    android:text="@string/n_a"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/textsize_sixteen"
-
+                    style="@style/summoner_textbox"
                     />
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/n_a"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/textsize_sixteen"
-
+                    style="@style/summoner_textbox"
                     />
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 
-         <include layout="@layout/header_file">
-
-         </include>
         </FrameLayout>
         <ProgressBar
             android:layout_width="wrap_content"

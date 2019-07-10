@@ -17,7 +17,8 @@ public class SummonerModel {
     public static MutableLiveData<Summoner> getLogininstance(String server, String username){
         MutableLiveData<Summoner> summonerMutableLiveData = new MutableLiveData<>();
         LoginInterface loginInterface = LeagueRetro.getLeagueInstanceServers(server).create(LoginInterface.class);
-        Call<Summoner> summonerCall= loginInterface.getPersonData(username, API_KEY);
+        //LoginInterface loginInterface = LeagueRetro.getLeagueInstanceServers().create(LoginInterface.class);
+        Call<Summoner> summonerCall= loginInterface.getPersonData(username,API_KEY);
         summonerCall.enqueue(new Callback<Summoner>() {
             @Override
             public void onResponse(Call<Summoner> call, Response<Summoner> response) {

@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_SPELL;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.LOCAL_URL_SPELL;
 
 public class AbilitiesAdapter extends RecyclerView.Adapter<AbilitiesAdapter.ViewHolder> {
     private List<ChampionSpells> championSpells =  new ArrayList<>();
@@ -27,7 +28,7 @@ public class AbilitiesAdapter extends RecyclerView.Adapter<AbilitiesAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.abilityname_tv.setText(championSpells.get(i).getName());
         viewHolder.abilitydesc_tv.setText(championSpells.get(i).getDescription());
-        Picasso.get().load(CHAMPION_SPELL +championSpells.get(i).getChampionImage().getFull()).into(viewHolder.ability_icon);
+        Picasso.get().load(LOCAL_URL_SPELL +championSpells.get(i).getChampionImage().getFull()).into(viewHolder.ability_icon);
     }
 
     @Override

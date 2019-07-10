@@ -41,13 +41,6 @@ public class SignUp extends AppCompatActivity {
             String password =password_tv.getText().toString();
             // So I discovered that calling the getSelectedItem actually calls the onItemSelected ->parent.getSelectedItem(position).toString();
 
-//            So here is a list of names that can be searched according to region(THE SPINNER CHOICES).
-//            NA - (SEARCH FOR "NA ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - Shiphtur, Sophist Sage1.
-//            EUW- (SEARCH FOR "EUW ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - sandstorm73 ,charliesdemon.
-//            BZL- (SEARCH FOR "BRAZIL ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIJACK.
-//            JPN- (SEARCH FOR "JPN ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - isurugi .
-//            OCE- (SEARCH FOR "OCE ranked ladder" IN GOOGLE AND CHOOSE FIRST RESULT) Examples of names include - PIuviophile, alukaa.
-//
             String summoner_name = summoner_username.getText().toString();
             String server = serverSpinner.getSelectedItem().toString();
             if (!summoner_name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
@@ -58,10 +51,15 @@ public class SignUp extends AppCompatActivity {
                     if (summoneresponse != null) {
                         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(getString(R.string.summoner_name_key), summoneresponse.getName());
-                        editor.putString(getString(R.string.summoner_server), server);
-                        editor.putInt(getString(R.string.summoner_icon_key), summoneresponse.getProfileIconId());
-                        editor.putInt(getString(R.string.summoner_level_key), summoneresponse.getSummonerLevel());
+//                        editor.putString(getString(R.string.summoner_name_key), summoneresponse.getName());
+//                        editor.putString(getString(R.string.summoner_server), server);
+//                        editor.putInt(getString(R.string.summoner_icon_key), summoneresponse.getProfileIconId());
+//                        editor.putInt(getString(R.string.summoner_level_key), summoneresponse.getSummonerLevel());
+                        editor.putString(getString(R.string.summoner_name_key), "sandstorm73");
+                        editor.putString(getString(R.string.summoner_server), "EUW");
+                        editor.putInt(getString(R.string.summoner_icon_key), 3001);
+                        editor.putInt(getString(R.string.summoner_level_key), 117);
+
                         editor.apply();
                         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
@@ -70,7 +68,6 @@ public class SignUp extends AppCompatActivity {
                             }
                             else {
                                 Log.e("sam", "Failure");
-
                             }
                         });
                     } else {

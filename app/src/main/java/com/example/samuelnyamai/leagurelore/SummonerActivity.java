@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.samuelnyamai.leagurelore.Adapters.ChampionPLayedAdapter;
 import com.example.samuelnyamai.leagurelore.ViewModel.Specific_SummonerViewModel;
 import com.example.samuelnyamai.leagurelore.data.ChampionsPlayed;
@@ -25,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_LOADINGIMAGE_URL;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.JPG_IMAGE_EXTENSION;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.LOCAL_URL_IMAGESPLASH;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.LOCAL_URL_PROFILE;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PNG_IMAGE_EXTENSION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PROFILE_BASE_URL;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.SERVER_EXTRA;
@@ -68,10 +69,12 @@ public class SummonerActivity extends AppCompatActivity {
             String server = intent.getStringExtra(SERVER_EXTRA);
             viewModeler.getData(username ,server);
             viewModeler.getSummonerLiveData().observe(this, summoner ->{
+                Log.e("sam","The summoner is " + summoner);
                 ProgressBar summoner_progress = findViewById(R.id.summoner_progress);
                 summoner_progress.setVisibility(View.GONE);
                 if(summoner!=null) {
                     FrameLayout summoner_frame = findViewById(R.id.summoner_frame);
+                    Log.e("sam","Summoner is not null at all");
                     summoner_frame.setVisibility(View.VISIBLE);
                     updateUi(summoner);
                 }
@@ -80,7 +83,6 @@ public class SummonerActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     private void updateUi(Summoner summoner) {
@@ -88,16 +90,18 @@ public class SummonerActivity extends AppCompatActivity {
         s_level.setText(String.valueOf(summoner.getSummonerLevel()));
         int champid=summoner.getChampionsPlayedList().get(0).getChampionId();
         Picasso.get().load(PROFILE_BASE_URL + summoner.getProfileIconId() + PNG_IMAGE_EXTENSION).into(summoner_currenticon_iv);
-        viewModeler.getBackdrop_image(this,champid).observe(this,name ->{
-            Picasso.get().load(CHAMPION_LOADINGIMAGE_URL + name + "_0" + JPG_IMAGE_EXTENSION).fit().into(summoner_backdrop_iv);
-        });
+        Picasso.get().load(CHAMPION_LOADINGIMAGE_URL + "Ahri" + "_0" + JPG_IMAGE_EXTENSION).fit().into(summoner_backdrop_iv);
+
+        //retreaving from database
+//        viewModeler.getBackdrop_image(this,champid).observe(this,name ->
+////                Picasso.get().load(CHAMPION_LOADINGIMAGE_URL + name + "_0" + JPG_IMAGE_EXTENSION).fit().into(summoner_backdrop_iv)
+//        );
         List<String> champidList = new ArrayList<>();
         for (ChampionsPlayed championsPlayed : summoner.getChampionsPlayedList()) {
             champidList.add(String.valueOf(championsPlayed.getChampionId()));
         }
-        viewModeler.getChampionsPlayedList(this,champidList).observe(this,observer->{
-            championPLayedAdapter.setChampionsPlayedlist(observer);
-        });
+        //setting champions played to adapter
+        viewModeler.getChampionsPlayedList(this,champidList).observe(this,observer-> championPLayedAdapter.setChampionsPlayedlist(observer));
         if(summoner.getSummonerRankedInfoList().size()==0){
             LinearLayout unranked = findViewById(R.id.unranked);
             unranked.setVisibility(View.VISIBLE);
@@ -115,11 +119,10 @@ public class SummonerActivity extends AppCompatActivity {
         LinearLayout rankedsolo_linear = findViewById(R.id.rankedsolo_linear);
         rankedsolo_linear.setVisibility(View.VISIBLE);
         String solo = summonerRankedInfo.getTier();
-        String solo_points = solo + " " + String.valueOf(summonerRankedInfo.getRank()) ;
+        String solo_points = solo + " " + summonerRankedInfo.getRank() ;
         sr_name.setText(summonerRankedInfo.getLeagueName());
-        String all = String.valueOf(summonerRankedInfo.getLeaguePoints())+ " LP" + "  /"
-                + String.valueOf(summonerRankedInfo.getWins()) + "W " +
-                String.valueOf(summonerRankedInfo.getLosses()) + "L";
+        String all = summonerRankedInfo.getLeaguePoints()+ " LP" + "  /"+ summonerRankedInfo.getWins() + "W " +
+                summonerRankedInfo.getLosses() + "L";
         sr_points.setText(solo_points);
         leaguepointssolo_tv.setText(all);
         getDrawable(solo,soloranked_iv);
@@ -129,12 +132,11 @@ public class SummonerActivity extends AppCompatActivity {
         LinearLayout rankedflex_linear = findViewById(R.id.rankedflex_linear);
         rankedflex_linear.setVisibility(View.VISIBLE);
         String flex = summonerRankedInfo.getTier();
-        String flex_points = flex + " " + String.valueOf(summonerRankedInfo.getRank()) ;
+        String flex_points = flex + " " + summonerRankedInfo.getRank() ;
         fr_name.setText(summonerRankedInfo.getLeagueName());
         fr_points.setText(flex_points);
-        String all = String.valueOf(summonerRankedInfo.getLeaguePoints())+ " LP" + "  /"
-                        + String.valueOf(summonerRankedInfo.getWins()) + "W " +
-                        String.valueOf(summonerRankedInfo.getLosses()) + "L";
+        String all = summonerRankedInfo.getLeaguePoints()+ " LP" + "  /" + summonerRankedInfo.getWins() + "W " +
+                        summonerRankedInfo.getLosses() + "L";
         leaguepointsflex_tv.setText(all);
         getDrawable(flex,flexranked_iv);
     }

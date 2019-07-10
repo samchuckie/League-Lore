@@ -33,6 +33,9 @@
     <string name="summoner_search">Summoner search</string>
     <string name="n_a">N/A</string>
     <string name="champion_image_transistion">champion_image</string>
-    <string name="input_email">Input email</string>
-    <string name="input_password">Input password</string>
+    <string name="input_email">Input random email</string>
+    <string name="input_password">Input random password</string>
+    <string name="choose_a_server">Choose a server</string>
+    <string name="network_missing">Network unavailable</string>
+    <string name="user_is_not_registered">User is not registered</string>
 </resources>

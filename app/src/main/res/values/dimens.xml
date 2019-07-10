@@ -7,7 +7,7 @@
     <dimen name="icon_dim">64dp</dimen>
     <dimen name="eight_dp">8dp</dimen>
     <dimen name="textsize_sixteen">16sp</dimen>
-    <dimen name="spinner_width">56dp</dimen>
+    <dimen name="spinner_width">64dp</dimen>
     <dimen name="four_dp">4dp</dimen>
 
     <!--

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.CHAMPION_ICON_BASE_URL;
+import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.LOCAL_URL_CHAMPION;
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.PNG_IMAGE_EXTENSION;
 
 public class ChampionPLayedAdapter extends RecyclerView.Adapter <ChampionPLayedAdapter.ViewHolder>{

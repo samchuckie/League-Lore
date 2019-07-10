@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LogIn"
     android:background="@color/light_grey"
-    >
+    tools:context=".LogIn">
 
     <ImageView
         android:id="@+id/imageView"
@@ -15,7 +13,7 @@
         android:layout_height="173dp"
         android:layout_marginStart="@dimen/eight_dp"
         android:layout_marginLeft="@dimen/eight_dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="@dimen/eight_dp"
         android:layout_marginRight="@dimen/eight_dp"
         android:contentDescription="@string/icon_content_description"
@@ -27,85 +25,62 @@
 
     <EditText
         android:id="@+id/login_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/white"
+        style="@style/usertextview"
         android:hint="@string/input_email"
         android:inputType="textEmailAddress"
-        android:paddingLeft="@dimen/eight_dp"
-        android:paddingRight="@dimen/eight_dp"
         android:textSize="@dimen/textsize_sixteen"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.259"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/login_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/white"
+        style="@style/usertextview"
         android:hint="@string/input_password"
         android:inputType="textPassword"
-        android:paddingLeft="@dimen/eight_dp"
-        android:paddingRight="@dimen/eight_dp"
-        android:textSize="@dimen/textsize_sixteen"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/login_email" />
 
     <Button
         android:id="@+id/login_proceed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/rounded_shape"
+        style="@style/loginbutton"
         android:drawableEnd="@drawable/ic_arrow_forward_black_24dp"
         android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
         android:elevation="6dp"
-        android:paddingLeft="@dimen/eight_dp"
-        android:paddingRight="@dimen/eight_dp"
         android:text="@string/login"
-        android:textColor="@color/white"
-        android:textSize="@dimen/textsize_sixteen"
-        app:layout_constraintEnd_toStartOf="@+id/login_signup"
-        app:layout_constraintHorizontal_bias="0.978"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
     <Button
         android:id="@+id/login_signup"
+        style="@style/loginbutton"
+        android:elevation="6dp"
+        android:text="@string/signin"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/login_proceed" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
-        android:background="@drawable/rounded_shape"
-        android:elevation="6dp"
-        android:paddingLeft="@dimen/eight_dp"
-        android:paddingRight="@dimen/eight_dp"
-        android:text="@string/signin"
-        android:textColor="@color/white"
-        android:textSize="@dimen/textsize_sixteen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/login_proceed" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="76dp" />
 
-
-
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="95dp" />
 
 
 </android.support.constraint.ConstraintLayout>

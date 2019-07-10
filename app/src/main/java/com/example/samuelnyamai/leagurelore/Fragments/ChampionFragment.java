@@ -1,6 +1,5 @@
 package com.example.samuelnyamai.leagurelore.Fragments;
 
-import android.app.ActivityOptions;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;import android.support.v7.widget.LinearLayoutManager;
-
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,33 +41,31 @@ public class ChampionFragment extends Fragment implements ChampionAdapter.ItemCl
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.champion_fragment,container ,false);
         RecyclerView recyclerView = view.findViewById(R.id.champion_rv);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext() ,2);
-        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext() ,2);
+        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(gridLayoutManager);
         ChampionAdapter championAdapter = new ChampionAdapter(this);
         recyclerView.setAdapter(championAdapter);
 
         // Lambda replaced with method expression
-
-
         // TODO ADD TAGS TO A SET TO SEE ALL THE TAGS AVAILABLE
 
-        allChampionsViewModel.getChampionList().observe(this, championDetails -> {
+        allChampionsViewModel.getListMutableLiveData().observe(this, championDetails -> {
             Log.e("sam" ,"Something is being observed");
-                    if (championDetails != null){
-                        for (ChampionDetails champ:championDetails) {
-                            championAdapter.addChampion(champ);
-                           // Log.e("sam" , "The champ is " + champ.getName());
-                        }
-                    }
-                    else {
-
-                        //  TODO CHECK IF THERE IS INTERNET. THIS IS AFTER DATABASE IS NULL
-
-                            allChampionsViewModel.getListMutableLiveData();
-                            Log.e("sam" , "champs are null");
-
-                        }
+//                    if (championDetails != null){
+//                        for (ChampionDetails champ:championDetails) {
+//                            championAdapter.addChampion(champ);
+//                           // Log.e("sam" , "The champ is " + champ.getName());
+//                        }
+//                    }
+//                    else {
+//                        //  TODO CHECK IF THERE IS INTERNET. THIS IS AFTER DATABASE IS NULL
+//                            allChampionsViewModel.getListMutableLiveData();
+//                            Log.e("sam" , "champs are null");
+//
+//                        }
+            Log.e("sam" , "The champ is " + championDetails.getName());
+            championAdapter.addChampion(championDetails);
                 });
         return view;
     }

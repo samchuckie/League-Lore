@@ -33,5 +33,13 @@ public class LeagueRetro {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
+    public static Retrofit getLeagueInstanceServers(){
+
+        return new Retrofit.Builder()
+                .baseUrl(LOCALHOST)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
 
 }

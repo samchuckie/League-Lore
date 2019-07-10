@@ -28,6 +28,7 @@ import retrofit2.Response;
 
 import static com.example.samuelnyamai.leagurelore.Constants.ServerConstants.API_KEY;
 
+
 public class SpecificSummonerModel {
     private static MutableLiveData<Summoner> summonerLiveData;
     public static LiveData<String> getChampionbackdrop(Context context, int champid) {
@@ -46,47 +47,53 @@ public class SpecificSummonerModel {
         summonerLiveData = new MutableLiveData<>();
         searchsummoner = new Summoner();
 
-        // TODO CHANGE THE SERVER CHOICE FROM MANUAL TO DYNAMIC
-
-        LoginInterface loginInterface = LeagueRetro.getLeagueInstanceServers(server).create(LoginInterface.class);
-        Call<Summoner> summonerCall = loginInterface.getPersonData(username, API_KEY);
+        //LoginInterface loginInterface = LeagueRetro.getLeagueInstanceServers(server).create(LoginInterface.class);
+        LoginInterface loginInterface = LeagueRetro.getLeagueInstanceServers("EUW").create(LoginInterface.class);
+        Call<Summoner> summonerCall = loginInterface.getPersonData(username,API_KEY);
         summonerCall.enqueue(new Callback<Summoner>() {
             @Override
             public void onResponse(Call<Summoner> call, Response<Summoner> response) {
-                Log.e("sam", "The url is " + call.request().url().toString());
+                Log.e("sam", "The url isSS " + call.request().url().toString());
                     searchsummoner = response.body();
                 if (searchsummoner != null) {
                     getPUUD(searchsummoner.getId(),server);
+                }
+                else{
+                    Log.e("sam","Summoner is null resposnse is " + response);
                 }
             }
             @Override
             public void onFailure(Call<Summoner> call, Throwable t) {
                 Log.e("sam", "Error found is " + t.getMessage());
+                Log.e("sam", "The url isSA " + call.request().url().toString());
+
             }
         });
     }
     private static void getPUUD(String puuid,String server) {
+        Log.e("sam","Ranked info");
+
         RankedInterface rankedInterface = RankedRetro.getRankedInfoInstance(server).create(RankedInterface.class);
         ChampioMasteryInt championsInterface = ChampionsPlayedRetro.getAllChampionMasteryInstance(server).create(ChampioMasteryInt.class);
         Observable<List<SummonerRankedInfo>> listCall = rankedInterface.
-                getsummoneranked(puuid,
-                        API_KEY)
+                getsummoneranked(puuid,API_KEY)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
 
         Observable<List<ChampionsPlayed>> listCaller = championsInterface.
-                getchampionsplayed(puuid,
-                        API_KEY)
+                getchampionsplayed(puuid,API_KEY)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
+        Log.e("sam","Ranked info is still being observed");
 
-        Observable<Summoner> summonerObservable = Observable.zip(listCall, listCaller,
-                (summonerRankedInfos, championsPlayeds) -> {
+        Observable<Summoner> summonerObservable = Observable.zip(listCall, listCaller, (summonerRankedInfos, championsPlayeds) -> {
                     if (summonerRankedInfos != null){
                         searchsummoner.setSummonerRankedInfoList(summonerRankedInfos);
+                        Log.e("sam","Ranked info");
                     }
                     else {
                         searchsummoner.setSummonerRankedInfoList(null);
+                        Log.e("sam","summerRanked info is blank ");
                     }
                     searchsummoner.setChampionsPlayedList(championsPlayeds);
                     return searchsummoner;
